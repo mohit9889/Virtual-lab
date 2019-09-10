@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Virtual Labs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <script src="graph.ob.js">
+    </script>
+    <script src="graph_use.ob.js"></script>
+    <script src="graph_use2.ob.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".play-animation").click(function() {
+                $(".mycanvas").css("animation-play-state", "running");
+            });
+            $(".stop-animation").click(function() {
+                $(".mycanvas").css("animation-play-state", "paused");
+            });
+        });
+    </script>
+    <script src="animation.ob.js"></script>
+</head>
+
+<body>
+    <h2 style="text-align: center">Length Contraction</h2>
+    <table>
+        <tr>
+            <!-- Animation Part--><td>
+			
+                <canvas class="mycanvas" id="mycanvas" width="750px" height="500px"></canvas>
+            </td>
+            <td>
+                <div id="l1"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+			<!-- Values to given by User-->
+                <p id="para1" style="width:750px;">
+                    Actual Length:-
+                    <label id="lena">0</label><label id="exparam0"></label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Observed Length:-
+                    <label id="leno">0</label><label id="exparam1"></label><br><br> Select Least Count For Velocity <input type="text" id="tf0">
+                    <input type="Submit" id="btn0" onclick="return check()"><br><br> Select Unit <select id="unit" style="width: 150px" onchange="openInput()">
+                        <option></option>
+                        <option value = "km">Kilometer</option>
+                        <option value = "m">Meter</option>
+                        <option value = "cm">Centimeter</option>
+                        <option value = "mm">Millimeter</option>
+                    </select><br><br>
+                    <span style="display: inline; font-size: 15px; font-weight: bolder">Proper Length(Spaceship)&nbsp;&nbsp;&nbsp;</span> l&nbsp;&nbsp;
+                    <input type="text" id="tf1" oninput="changeValue()" /><label id="exparam2"></label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span style="display: inline; font-size: 15px; font-weight: bolder">Velocity</span> &nbsp;&nbsp;
+                    <input type="text" id="tf2" oninput="falseDisable()" />&nbsp;c<br><br>
+                    <input type="button" style="display:inline;" class="play-animation" id="btn1" value="Launch Spaceship" onclick="strt();">
+                    <input type="button" id="btn2" value="Record Observations" onclick="tble();"><br><br>
+                    <input type="button" id="btn3" value="Draw graph" onclick="drwgrph();"><br><br>
+                    <input type="button" id="btn4" value="Reset" onclick="res();">
+                    <input type="button" id="btn5" value="Conclusion" onclick="cnclsn();">
+                </p>
+            </td>
+            <td id="para2">
+                <!-- All Dynamic front end Things Here -->
+                <table>
+                    <tr>
+                        <th id="th1" style="position:relative; left: 0px;top: 0px;">
+                            <table id="tb1" style="width:140px;">
+                                <tr>
+                                    <td id="row1" style="text-align: center;font-weight: bold">l' </td>
+                                    <td id="row2" style="text-align: center;font-weight: bold">v</td>
+                                </tr>
+                            </table>
+                        </th>
+                        <td id="th2" colspan="2" style="border: 20px; border-color: black; left: 10px">
+                            <div class="wrapit ">
+                                <div class="firstdiv" id="firstdiv">
+                                    <fieldset>
+									
+									<!--PITFALL 1-->
+                                        <legend>If a rod moves with velocity of light, what will be effect on its length? </legend>
+                                        <p>
+                                            <label>Please Choose What You Think?</label><br><br>
+
+                                            <input type="radio" name="radSize" id="rb1" value="small" />
+                                            <label>Length will be Contracted</label><br>
+
+                                            <input type="radio" name="radSize" id="rb2" value="medium" />
+                                            <label>NO Change in the value of length</label><br>
+
+                                            <input type="button" value="Submit Answer" onclick="chk();">
+                                        </p>
+                                    </fieldset>
+                                </div>
+                                <div class="seconddiv" id="seconddiv">
+                                    <fieldset>
+									
+									<!--PITFALL 2-->
+                                        <h2>If a rod moves with non-relativistic speed, its length would be contracted along the direction of its motion</h2>
+                                        <label>
+                                        <h4>Please choose what you think?</h4>
+                                    </label>
+                                        <br>
+                                        <label>
+                                        <input type="radio" name="but" id="rb10"/>&nbsp;Its length would be contracted along the direction of its motion<br>
+                                    </label>
+                                        <label>
+                                        <input type="radio" name="but" id="rb20"/>&nbsp;Its length would be contracted along the direction Opposite to its motion<<br>
+                                    </label>
+                                        <input type="Submit" id="b1" onclick="chk1()" />
+                                    </fieldset>
+                                </div>
+                                <div class="thirddiv" id="thirddiv">
+                                    <fieldset>
+                                        <h2>CONCLUSION</h2>
+                                        <label>
+                                                <h4>Please choose the correct conclusion(s) :</h4>
+                                            </label>
+                                        <label>
+                                                <input type="checkbox" id="ch1"/>&nbsp;Length Contraction is applicable only on classical speed.<br>
+                                            </label>
+                                        <label>
+                                                <input type="checkbox" id="ch2"/>&nbsp;Length Contraction is applicable only on relativistic speed.<br>
+                                            </label>
+                                        <label>
+                                                <input type="checkbox" id="ch3"/>&nbsp;Length Contraction follows postulates of Special Theory of Relativity.<br>
+                                            </label>
+                                        <label>
+                                                <input type="checkbox" id="ch4"/>&nbsp;Length Contraction follows Lorentz Transformation Equation.<br>
+                                            </label>
+                                        <label>
+                                                <input type="checkbox" id="ch5"/>&nbsp;Length Contraction follows Galilean Transformation Equation.<br>
+                                            </label>
+                                        <br>
+                                        <input type="Submit" id="bcheck1" onclick="checkbox1(); ">
+
+                                    </fieldset>
+                 
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <script src="main.js">
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,741 @@
+<html>
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title> Virtual Labs </title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <h2 style="text-align: center">Time Dilation</h2>
+        <!-- Scripts Used For Coding -->
+        <script src="animation.ob.js"></script>
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        <script src="graph.ob.js"></script>
+        <script src="graph_use.ob.js"></script>
+        <script src="graph_use2.ob.js"></script>
+
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $(".play-animation").click(function () {
+                        $(".mycanvas").css("animation-play-state", "running");
+                    });
+                    $(".stop-animation").click(function () {
+                        $(".mycanvas").css("animation-play-state", "paused");
+                    });
+                });
+            </script>
+            <!-- CSS File  -->
+        <link rel="stylesheet" href="main.css">
+    </head>
+
+    <body>
+        <!-- Table For Making All the Contents Aligned in screen -->
+        <table>
+            <tr>
+                <th>
+                    <canvas class="mycanvas" id="mycanvas" width="750" height="500" style="border:solid; border-color:black"></canvas>
+                </th>
+                <th>
+                    <div id="l1"></div>
+                </th>
+            </tr>
+            <tr>
+                <th><!-- All types Of Button and Textfields -->
+                    <p id="para1" style="width: 750px">
+                        Earth Time:-
+                        <label id="hour">00</label>:<label id="minutes">00</label>:<label id="seconds">00</label>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        Space Time:-
+                        <label id="hour1">00</label>:<label id="minutes1">00</label>:<label id="seconds1">00</label><br><br>
+                        Select Least Count For Velocity <input type="text" id="tf0">
+                        <input type="button" id="btn0" value="Submit"><br><br>
+                        Select Time Period Time <select id="yearlist" style="width: 150px"></select><br><br>
+                        <span style="display: inline; font-size: 24px; font-weight: bolder">Proper Time(Spaceship)&nbsp;&nbsp;&nbsp;t</span>
+                        &nbsp;&nbsp;
+                        <input type="text" id="tf1" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span style="display: inline; font-size: 24px; font-weight: bolder">v</span>
+                        &nbsp;&nbsp;
+                        <input type="text" id="tf2" />&nbsp;c<br><br>
+                        <input type="button" class="play-animation" id="btn1" value="Start Clocks" onclick="strt();">
+                        <!--<input type="button" class="stop-animation" id="btn1.5" value="Stop Animation" onclick="stop1();" />-->
+                        <input type="button" id="btn2" value="Record Observations" onclick="tble();"><br><br>
+                        
+                        <input type="button" id="btn3" value="Draw graph" onclick="drwgrph();"><br><br>
+                        <input type="button" id="btn4" value="Reset" onclick="res();">
+                        <input type="button" id="btn5" value="Conclusion" onclick="cnclsn();">
+                    
+                    </p>
+                </th>
+                <th id="para2"><!-- All Dynamic front end Things Here -->
+                    <table style="position: absolute; top: 0px; left: 0px; ">
+                        <th id="th1" style="position:relative; left: 0px">
+                            <table id="tb1" style="width: 140px">
+                            <th id="row1">t'</th>
+                            <th id="row2">v</th>
+                            </table>
+                        </th>
+                        <th id="th2" colspan="2" style="border: 20px; border-color: black">
+                            <div class="wrapit">
+                                <div class="firstdiv" id="firstdiv">
+                                    <fieldset>
+                                        <legend>What If Our Speed Is Greater Than or Equal to Speed Of Light?</legend>
+                                        <p>
+                                            <label>Please Choose What You Think?</label><br><br>
+                                    
+                                            <input type="radio" name="radSize" id="rb1" value="small" />
+                                            <label>Space Ship Will Blast</label><br>
+                                    
+                                            <input type="radio" name="radSize" id="rb2" value="medium" />
+                                            <label>Space Ship Will Become Black Hole</label><br>
+                                    
+                                            <input type="radio" name="radSize" id="rb3" value="large" />
+                                            <label>No object can go faster than velocity of light</label><br>
+                                    
+                                            <input type="radio" name="radSize" id="rb4" value="large" />
+                                            <label>None Of These </label><br>
+                                    
+                                            <input type="button" value="Submit Answer" onclick="chk();">
+                                        </p>
+                                    </fieldset>
+                                </div>
+                                <div class="seconddiv" id="seconddiv">
+                                <fieldset>
+                                        <h2>What if our speed of spaceship is not relativistic?</h2>
+                                    <label>
+                                        <h4>Please choose what you think?</h4>
+                                    </label>
+                                    <br>
+                                    <label>
+                                        <input type="radio" name="but" id="rb10">&nbsp;The spaceship will act as a particle.<br>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="but" id="rb20">&nbsp;The spaceship will stop moving. <br>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="but" id="rb30">&nbsp;Time will not be dilated. <br>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="but" id="rb40">&nbsp;Spaceship will blast. <br>
+                                    </label>
+                                    <br>
+                                    <input type="button" value="Submit" id="b1" onclick="check1();">
+                                </fieldset>
+                                </div>
+                                <div class="thirddiv" id="thirddiv">
+                                        <fieldset>
+                                                <h2>CONCLUSION</h2>
+                                            <label>
+                                                <h4>Please choose the correct conclusion(s) :</h4>
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" id="ch1">&nbsp;Time Dilation is applicable only on classical speed.<br>
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" id="ch2">&nbsp;Time Dilation is applicable only on relativistic speed.<br>
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" id="ch3">&nbsp;Time Dilation follows postulates of Special Theory of Relativity.<br>
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" id="ch4">&nbsp;Time Dilation follows Lorentz Trnasformation Equation.<br>
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" id="ch5">&nbsp;Time Dilation follows Galilean Trnasformation Equation.<br>
+                                            </label>
+                                            <br>
+                                            <input type="button" value="Submit" id="bcheck1" onclick="checkbox1();">
+                                        
+                                    </fieldset>
+                                    
+                                </div>
+                            </div>
+                            
+                        </th>
+                    </table>
+                </th>
+            </tr>
+        </table>
+        
+        
+        
+        <script>
+            alert("Please Read All The Instructions Carefully \n\n 1. Least Count is to get the intervals of velocity in graph. Range : [0,1)\n 2. t is our proper time(space time)\n 3.Velocity is relativstic i.e. it is in terms of c. Range : (0,1) \n 4. You will see pitfalls while performing the experiment. You won't be able to skip them.\n 5.Make Sure To Reset The Simulator")
+            // Disabling  the field and initializing variables globally so that user cant hinder with simulator
+            document.getElementById("firstdiv").style.visibility='hidden';
+            document.getElementById("seconddiv").style.visibility = 'hidden';
+            document.getElementById("thirddiv").style.visibility = 'hidden';
+
+            document.getElementById("firstdiv").style.opacity = 0;
+            document.getElementById("seconddiv").style.opacity = 0;
+            document.getElementById("thirddiv").style.opacity = 0;            
+
+            document.getElementById("btn1").disabled=true;
+            document.getElementById("btn2").disabled = true;
+            document.getElementById("btn3").disabled = true;
+            document.getElementById("btn5").disabled = true;
+            document.getElementById("tf1").disabled = true;
+            document.getElementById("tf2").disabled = true;
+            document.getElementById("yearlist").disabled = true;
+            
+            var btn0 = document.getElementById("btn0");
+
+            var a = document.getElementById("rb10");
+            var b = document.getElementById("rb20");
+            var c = document.getElementById("rb30");
+            var d = document.getElementById("rb40");
+            var a1 = document.getElementById("ch1");
+            var b1 = document.getElementById("ch2");
+            var c1 = document.getElementById("ch3");
+            var d1 = document.getElementById("ch4");
+            var e1 = document.getElementById("ch5");
+            var hourslabel = document.getElementById("hour");
+            var minutesLabel = document.getElementById("minutes");
+            var secondsLabel = document.getElementById("seconds");
+
+            var hourslabel1 = document.getElementById("hour1");
+            var minutesLabel1 = document.getElementById("minutes1");
+            var secondsLabel1 = document.getElementById("seconds1");
+
+            var totalSeconds = 0;
+            var totalSeconds1 = 0;
+            var totalminutes = 0;
+            var totalminutes1 = 0;
+            var totalhours = 0;
+            var totalhours1 = 0;
+
+
+            var divs;
+            var count=0;
+            
+
+            var timeperiod=[1,0.5,0.05,0.005,0.0005,0.00005];
+            var grp=[];
+            var grp1=[];
+
+            
+
+            
+            
+
+            var list = document.getElementById("yearlist");
+            var arr = [];
+            arr.push({value: 0,name: "Years" });
+            arr.push({ value: 1, name: "Months" });
+            arr.push({ value: 2, name: "Days" });
+            arr.push({ value: 3, name: "Hours" });
+            arr.push({ value: 4, name: "Minutes" });
+            arr.push({ value: 5, name: "Seconds" });
+
+            for (i = 0; i <= 5; i++) 
+            {
+                    var option = document.createElement("option");
+                    option.text = arr[i].name;
+                    option.value = arr[i].value;
+                    list.add(option);
+            }
+            
+            // Conclusion      
+            function checkbox1() {
+                    document.getElementById("thirddiv").setAttribute('style', 'visibility:visible');
+                    document.getElementById("thirddiv").style.opacity = 1;
+
+                    if ((b1.checked == true && c1.checked == true && d1.checked == true) && (a1.checked == false && e1.checked == false)) {
+                        alert("Congratulations! You have completed the experiment successfully.");
+                    }
+                    else if ((a1.checked == true || e1.checked == true) && (b1.checked == true || c1.checked == true || d1.checked == true)) {
+                        alert("There might be a wrong option selected.\nPlese refer the theory and try again.");
+                    }
+                    else if (b1.checked == true && c1.checked == true && d1.checked == false) {
+                        alert("All correct options are not selected.\nRead all the options once again.");
+                    }
+                    else if (d1.checked == true && c1.checked == true && b1.checked == false) {
+                        alert("All correct options are not selected.\nRead all the options once again.");
+                    }
+                    else if (d1.checked == true && b1.checked == true && c1.checked == false) {
+                        alert("All correct options are not selected.\nRead all the options once again.");
+                    }
+                    else if ((a1.checked == true && e1.checked == true) && (b1.checked == false && c1.checked == false && d1.checked == false)) {
+                        alert("Sorry, your answer is incorrect.\nPlease refer to the theory and try again.");
+                    }
+                    else if (a1.checked == false && b1.checked == false && c1.checked == false && d1.checked == false && e1.checked == false) {
+                        alert("Select atlest one option.");
+                    }
+                    else {
+                        alert("Sorry, your answer is incorrect.\nPlease refer to the theory and try again.");
+                    }
+                }
+            
+            // PITFALL 1
+            function chk() {
+                    if (document.getElementById("rb1").checked) {
+                        alert("Your answer is incorrect. Please try again.");
+
+                    }
+                    else if (document.getElementById("rb3").checked) {
+                        alert("You Got It Right !!!!");
+                        document.getElementById("firstdiv").style.visibility = 'hidden';
+                        document.getElementById("firstdiv").style.opacity = 0;
+                        count = 2;
+                    }
+                    else if (document.getElementById("rb2").checked) {
+                        alert("Your answer is incorrect. Please try again.");
+
+                    }
+                    else if (document.getElementById("rb4").checked) {
+                        alert("Your answer is incorrect. Please try again.");
+
+                    }
+
+
+                }
+
+            // Pitfall 2
+            function check1() {
+                    if (a.checked) {
+                        alert("Your answer is wrong. Please try again.");
+                    }
+                    if (b.checked) {
+                        alert("Your answer is wrong.Please try again.");
+                    }
+                    if (c.checked) {
+                        alert("Your answer is correct.\n\nThe phenomenon of time dilation comes into play only when a body is moving with relativistic speed.\nThus, when the speed of spaceship will not be relativistic, time will not be dilated.");
+                        document.getElementById("btn5").disabled = false;
+                    
+                    }
+                    if (d.checked) {
+                        alert("Your answer is wrong. Please try again.");
+                    }
+                }
+
+
+            //Submit Button Code
+            btn0.onclick = function () {
+                    var lc = parseFloat(document.getElementById("tf0").value);
+                    divs = lc;
+                    document.getElementById("tf1").disabled = false;
+                    document.getElementById("tf2").disabled = false;
+                    document.getElementById("btn1").disabled = false;
+                    alert("Please Choose The Time Period");
+                    document.getElementById("yearlist").disabled = false;
+                }
+
+            //Clocks Dynamically Working
+            var nam;
+            function strt()
+            {   
+                start1();
+
+                var selectedoption = document.getElementById("yearlist");
+                for (i = 0; i <= 5; i++) {
+                    if (arr[i].value == selectedoption.value) {
+                        document.getElementById("btn1").disabled = false;
+                        nam = arr[i].name;
+                        break;
+                    }
+                }
+                
+
+                console.log(arr[i].name);
+                console.log(nam);
+
+                var t = parseFloat(document.getElementById("tf1").value);
+                var v = parseFloat(document.getElementById("tf2").value);
+                document.getElementById("tf1").disabled=true;
+                document.getElementById("tf2").disabled=true;
+                document.getElementById("btn1").disabled=true;
+
+                var ratetime = parseFloat((v * t / (300000000*Math.sqrt(Math.pow(1 - v * v, 3)))));
+                console.log("Rate time "+ratetime);
+                
+                var ch=selectedoption.value;
+                var timer1=setInterval(setTime,timeperiod[ch]);
+                var timer2= setInterval(setTime1, timeperiod[ch] + ratetime);
+
+                    if(ch==0)
+                    {
+                        //console.log("dilation rate "+(timeperiod[ch] +ratetime));
+                        alert("Time Period is in Years:Months:Days");
+                        setInterval(setTime, timeperiod[ch]);
+                        setInterval(setTime1,timeperiod[ch] + ratetime);
+                        totalSeconds = 0;
+                        totalminutes = 0;
+                        totalhours = 0;
+                        totalSeconds1 = 0;
+                        totalminutes1 = 0;
+                        totalhours1 = 0;
+                        document.getElementById("btn2").disabled=false;
+                    }
+                    else if(ch==1)
+                        {
+                            alert("Time Period is in Months:Days:Hours");
+                            setInterval(setTime, timeperiod[ch]);
+                            setInterval(setTime1, timeperiod[ch] + ratetime);
+                            totalSeconds = 0;
+                            totalminutes = 0;
+                            totalhours = 0;
+                            totalSeconds1 = 0;
+                            totalminutes1 = 0;
+                            totalhours1 = 0;
+                            document.getElementById("btn2").disabled = false;
+                        }
+                    else if(ch==2)
+                        {
+                            alert("Time Period is in Days:Hours:Minutes");
+                            setInterval(setTime, timeperiod[ch]);
+                            setInterval(setTime1, timeperiod[ch] + ratetime);
+                            totalSeconds = 0;
+                            totalminutes = 0;
+                            totalhours = 0;
+                            totalSeconds1 = 0;
+                            totalminutes1 = 0;
+                            totalhours1 = 0;
+                            document.getElementById("btn2").disabled = false;
+                             
+                        }
+                    else if(ch==3)
+                        {
+                            alert("Time Period is in Hours:Minutes:Seconds");
+                            setInterval(setTime, timeperiod[ch]);
+                            setInterval(setTime1, timeperiod[ch] + ratetime);
+                            totalSeconds = 0;
+                            totalminutes = 0;
+                            totalhours = 0;
+                            totalSeconds1 = 0;
+                            totalminutes1 = 0;
+                            totalhours1 = 0;
+                            document.getElementById("btn2").disabled = false;
+                             
+                        }
+                    else if(ch==4)
+                        {
+                            alert("Time Period is in Minutes:Seconds:Milliseconds");
+                            setInterval(setTime, timeperiod[ch]);
+                            setInterval(setTime1, timeperiod[ch] + ratetime);
+                            totalSeconds = 0;
+                            totalminutes = 0;
+                            totalhours = 0;
+                            totalSeconds1 = 0;
+                            totalminutes1 = 0;
+                            totalhours1 = 0;
+                            document.getElementById("btn2").disabled = false;
+                             
+                        }
+                    else if(ch==5)
+                        {
+                            alert("Time Period is in Seconds:Milliseconds:Microseconds");
+                            setInterval(setTime, timeperiod[ch]);
+                            setInterval(setTime1, timeperiod[ch] + ratetime);
+                            totalSeconds = 0;
+                            totalminutes = 0;
+                            totalhours = 0;
+                            totalSeconds1 = 0;
+                            totalminutes1 = 0;
+                            totalhours1 = 0;
+                            document.getElementById("btn2").disabled = false;
+                             
+                        }
+                var inr = 0;
+                var inrt=0;
+                function setTime() 
+                {
+                    totalSeconds = parseInt(totalSeconds + ratetime);
+                    ++totalSeconds;
+                    if(totalSeconds>=60)
+                    {
+                        totalminutes = parseInt(totalminutes + ratetime + (totalSeconds/60 + (totalSeconds%60)/60));
+                        totalSeconds=0;
+                        
+                        ++totalminutes;
+                    }
+                    if(totalminutes>=60)
+                    {
+                        totalSeconds=0;
+                        totalminutes=0;
+                        totalhours = parseInt(totalhours + ratetime + (totalminutes / 60 + (totalminutes % 60)/60));
+                        ++totalhours;
+                    }
+
+                    if (totalminutes == 58) {
+                        inr++;
+                        if(inr==1)
+                        {
+                            document.getElementById("firstdiv").setAttribute('style','visibility:visible');
+                            document.getElementById("firstdiv").style.opacity = 1;
+                            count++;
+                        }
+                    }
+
+                    if (totalhours1 == 4) {
+                        inrt++;
+                        if(count<=1 && inrt ==1)
+                        {
+                            alert("PLease Have A Look At the Question Appeared");
+                        }
+                        if (inrt >= 1) {
+                            //console.log("Inside This Functi");
+                            if(count>=2)
+                            {
+                                document.getElementById("seconddiv").style.opacity = 1;
+                                document.getElementById("seconddiv").setAttribute('style', 'visibility:visible');
+                            }
+                        }
+                    }
+
+                    if (totalhours1 >= t) 
+                    {
+                        //console.log("We Are Inside This Function");
+                        clearInterval(timer1);
+                        return;
+                    }
+                    secondsLabel.innerHTML = +totalSeconds;
+                    minutesLabel.innerHTML = +totalminutes;
+                    hourslabel.innerHTML = +totalhours;
+                    
+                }
+
+                function setTime1() 
+                {
+                    ++totalSeconds1;
+                    if (totalSeconds1 == 60) {
+                        totalSeconds1 = 0;
+                        totalminutes1=totalminutes1+1;
+                    }
+                    if (totalminutes1 == 60) {
+                        totalSeconds1 = 0;
+                        totalminutes1 = 0;
+                        
+                        totalhours1=totalhours1+1;
+                    }
+                    if (totalhours1 >= t) {
+                        //console.log("We Are Inside This Function 2");
+                        clearInterval(timer2);
+                        return;
+                    }
+                    secondsLabel1.innerHTML = +totalSeconds1;
+                    minutesLabel1.innerHTML = +totalminutes1;
+                    hourslabel1.innerHTML = +totalhours1;
+                }                
+            }
+
+            /*
+            function openWindow(h, w, url) 
+            {
+                    leftOffset = (screen.width / 2) - w / 2;
+                    topOffset = (screen.height / 2) - h / 2;
+                    window.open(url, this.target, 'left=' + leftOffset + ',top=' + topOffset + ',width=' + w + ',height=' + h + ',resizable,scrollbars=yes');
+            }*/
+            
+            //Dynamically creating table
+            var tablebtn = 0;
+            var totalvel=0;
+            var sumtime=0;
+            function tble()
+            {
+                if(tablebtn>=3)
+                {
+                    document.getElementById("btn3").disabled=false;
+                }
+
+                /*var tb1 = document.getElementById("tb1");
+                var tim = parseInt(document.getElementById("tf1").value);
+
+                console.log(" Space Hour "+totalhours1+" Space Minuts "+totalminutes1+" Space Seconds "+totalSeconds1);
+                console.log(" Earth Hour " + totalhours + " Earth Minuts " + totalminutes + " Earth Seconds " + totalSeconds);
+
+                var t = (totalhours1*3600) + (totalminutes1 * 60) + (totalSeconds1);
+                var tdash= (totalhours * 3600) + (totalminutes * 60) + (totalSeconds);
+                var v = parseFloat(document.getElementById("tf2").value);
+
+                
+                ratevelocity = (t*t/(Math.pow(tdash,3)*Math.sqrt(1-(t*t/(tdash*tdash)))));
+                sumtime=sumtime+Math.abs(tdash-t);
+                vel=vel+0.1;
+
+                if (vel == 1 || vel >= v ) {
+                    alert("No More Observation because Speed Cannot Be More Than light speed");
+                    return;
+                }
+                console.log("grph2 "+(vel+ratevelocity)+" "+sumtime);
+                grp.push({x: vel,y: t/Math.sqrt(1-(Math.pow(vel,2)))});
+                grp1.push({x: vel+ratevelocity,y: sumtime});*/
+
+                var vel = parseFloat(document.getElementById("tf2").value);
+                var time = parseFloat(document.getElementById("tf1").value);
+
+               if(vel>=1)
+               {
+                    alert("No More Observation because Speed Cannot Be More Than light speed");
+                    return;
+               }
+
+               if(vel<=0)
+               {
+                    alert("Please Enter Correct Value Of Speed");
+                    return;
+               }
+
+                var velparts = Math.ceil(vel/divs);
+                var timeparts = time/velparts;
+                
+                if (vel >= 1 || tablebtn == velparts || tablebtn == 9 || (totalvel+divs)>=vel)
+                {
+                    grp.push({ x: vel, y: time / Math.sqrt(1 - (Math.pow(vel, 2))) });
+                    if((totalvel+divs)>=vel)
+                    {
+                        alert("Observation Complete");
+                        return;
+                    }
+                    if(tablebtn == velparts)
+                    {
+                        alert("No More Observation Possible");
+                        return;
+                    }
+                    else
+                    {
+                        alert("No More Records Possible");
+                        return;
+                    }
+                    
+                }
+                //console.log("velparts "+velparts+" timeparts "+timeparts);
+                sumtime=sumtime+timeparts;
+                totalvel=(totalvel+divs);
+                console.log(tablebtn+" "+velparts);
+                grp.push({x: totalvel,y: sumtime/ Math.sqrt(1 - (Math.pow(totalvel, 2)))});
+                
+
+                var row = tb1.insertRow();
+                var cell = row.insertCell();
+                cell.innerHTML=sumtime;
+                var cell = row.insertCell();
+                cell.innerHTML = totalvel;
+                
+                
+                tablebtn++;
+            }
+
+            // Draw Graph
+            function drwgrph()
+            {
+                drawgraph("l1", grp, "Relativstic Velocity in m/s ------->", "(Time in "+nam+") ------>");
+            }
+
+            // Reset Whole Window
+            function res()
+            {
+                document.getElementById("tf1").value="";
+                document.getElementById("tf2").value="";
+                document.getElementById("tf0").value="";
+                document.getElementById("rb10").checked=false;
+                document.getElementById("rb20").checked=false;
+                document.getElementById("rb30").checked=false;
+                document.getElementById("rb40").checked=false;
+                document.getElementById("rb1").checked=false;
+                document.getElementById("rb2").checked=false;
+                document.getElementById("rb3").checked=false;
+                document.getElementById("rb4").checked=false;
+                document.getElementById("ch1").checked=false;
+                document.getElementById("ch2").checked=false;
+                document.getElementById("ch3").checked=false;
+                document.getElementById("ch4").checked=false;
+                document.getElementById("ch5").checked=false;
+                window.location.reload();
+            }
+
+            // Conclusion Button
+            function cnclsn()
+            {
+                document.getElementById("seconddiv").style.opacity = 0;
+                document.getElementById("seconddiv").style.display='none';
+
+                document.getElementById("thirddiv").style.opacity = 1;
+                document.getElementById("thirddiv").setAttribute('style', 'visibility:visible');
+                
+            }
+
+            // Rocket Aniamtion
+
+            var anim = new Animation("mycanvas");
+            var canvas = anim.getCanvas();
+            var context = anim.getContext();
+            var x = 10;
+            var y = 10;
+            var xpoint = 10, ypoint = 400;
+            var flag = 0, yan = 1, yan1 = 1;
+
+            // Start The Rocket 
+            function start1() {
+                    if (flag == 0) {
+                        x = xpoint;
+                        y = ypoint;
+                        anim.setStage(stage);
+                        anim.start();
+                    }
+                    else {
+                        y = ypoint;
+                        x = xpoint;
+                        anim.setStage(stage);
+                        anim.start();
+                    }
+                }
+
+            // Main Animation Coding
+            function stage() 
+                {
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+                    base_image = new Image();
+                    base_image.src = "rocket.png";
+                    base_image.height = 50;
+                    base_image.width = 50;
+                    //base_image.onload = function()
+                    //{
+                    context.drawImage(base_image, x, y);
+                    //}
+                    if (y > 150) {
+                        y--;
+                        ypoint = y;
+                    }
+                    else if (y <= 150 && x < 620) {
+                        y--;
+                        x = x + yan;
+                        xpoint = x;
+                        ypoint = y;
+                        yan = yan + 0.15
+                    }
+                    else {
+                        anim.stop();
+                    }
+                }
+
+            // Stop The Animation
+            function stop1() {
+                    anim.stop();
+                    flag = 1;
+                }
+
+            /*
+            function mouseevt(x1, y1) {
+
+
+                }
+
+            function make_base(x,y)
+            {
+                base_image = new Image();
+                base_image.src = "rocket.png";
+                base_image.height = 50;
+                base_image.width = 50;
+                base_image.onload = function()
+                {
+                    context.drawImage(base_image, x, y);
+                }
+            }*/
+    
+
+        </script>
+    </body>
+
+</html>

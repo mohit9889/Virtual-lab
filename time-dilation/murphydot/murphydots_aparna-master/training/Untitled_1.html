@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<title></title>
+<script src="C:\Users\HP-PC\Desktop\Bootcamp\murphydots_aparna\training\10.graph\graph.ob.js"></script>
+<script src="C:\Users\HP-PC\Desktop\Bootcamp\murphydots_aparna\training\10.graph\graph_use.ob.js"></script>
+<script src="C:\Users\HP-PC\Desktop\Bootcamp\murphydots_aparna\training\10.graph\graph_use2.ob.js"></script>
+</head>
+<body>
+  <table style="width:100%">
+  <tr>
+  <td>
+  <div id="l1" style="width:600px;height:500px"></div>"
+  </td>
+  
+  <td>
+  <div id="l2" style="width:600px;height:500px"></div>
+    </td>
+  </tr>
+  </table>
+ <input type="button" value="DrawGraph 2" onclick="draw1">
+ <script>
+ var datapoints1 = [];
+ var datapoints2 = [];
+ for(i=1;i<=10;i++)
+ {
+ datapoints1.push({x:i,y:i*i});
+ datapoints2.push({x:i,y:i*i+i});
+ }
+ drawgraph("l1",datapoints1,"x values","x^2");
+ function draw1()
+ {
+ drawgraph2("l2",datapoints1,datapoints2, "X-axis,"Y-axis","comparision","x^2","x^2+x");
+ }
+   
+ </script>
+ </body>
+ </html>

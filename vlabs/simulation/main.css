@@ -1,0 +1,84 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.mycanvas {
+  background: #00fdff url(akash.png);
+  background-position: 0px 0px;
+  background-repeat: repeat-x;
+  -webkit-animation: animate 4s linear infinite;
+          animation: animate 4s linear infinite;
+}
+
+@-webkit-keyframes animate {
+  frmo {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+
+@keyframes animate {
+  frmo {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+
+#btn1 {
+  position: absolute;
+  left: 150px;
+}
+
+#btn2 {
+  position: absolute;
+  left: 500px;
+}
+
+#para1, #para2 {
+  position: relative;
+  width: 600px;
+  height: 300px;
+}
+
+#l1 {
+  width: 600px;
+  height: 500px;
+}
+
+#th2 {
+  position: absolute;
+  left: 180px;
+  width: 400px;
+}
+
+td, th {
+  border: solid;
+  width: 50px;
+  border-color: black;
+}
+
+.wrapit {
+  top: 0;
+  width: 420px;
+  height: 300px;
+  position: relative;
+}
+
+.firstdiv, .secondiv, .thirddiv {
+  top: 0;
+  position: absolute;
+}
+
+#row1 {
+  width: 50px;
+}
+
+#row2 {
+  width: 50px;
+}
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,514 @@
+<html>
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title> Virtual Labs </title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <h2 style="text-align: center"><legend>Velocity Addition</legend></h2>
+        <!-- CSS File  -->
+        <link rel="stylesheet" href="./css/main.css">
+        <!-- Scripts Used For Coding -->
+        <script src="./js/animation.ob.js"></script>
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        <script src="./js/graph.ob.js"></script>
+        <script src="./js/graph_use.ob.js"></script>
+        <script src="./js/graph_use2.ob.js"></script>
+
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $(".play-animation").click(function () {
+                        $(".mycanvas").css("animation-play-state", "running");
+                    });
+                    $(".play-animation").click(function () {
+                        $(".mycanvas1").css("animation-play-state", "running");
+                    });
+                });
+            </script>
+        
+    </head>
+
+    <body>
+        <!-- Table For Making All the Contents Aligned in screen -->
+        <table>
+            <tr>
+                <th>
+                    <div class="mycanvas">
+                        <img id="rocket1" class="rocket1" src="./images/rocket1.png">
+                        <label style="align-content: center; font-size: 2vw; color: cornflowerblue">Rest Frame</label>
+                    </div>
+                </th>
+                <th>
+                    <div class="mycanvas1">
+                        <img id="rocket2" class="rocket2" src="./images/rocket.png">
+                        <label style="align-content: center; font-size: 2vw; color:cornflowerblue">Moving Frame</label>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th colspan="2"><!-- All Dynamic front end Things Here -->
+                        <div class="wrapit">
+                            <br><br><input type="button" id="btn1" value="Next" onclick="changesteps();"><br><br>
+                            <div class="firstdiv" id="initial_screen">                                
+                                    <br><input type="button" id="btn0" value="Calculate Relativstic Velocity"
+                                        onclick="learn();">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="button" class="play-animation" id="btn2" value="Learn Through Animation" onclick="strt();"><br><br>
+                                
+                                    <label id="lb1"></label><br><br>
+                                    <input type="button" id="btn4" value="Reset" onclick="res();">
+                                    <input type="button" id="btn5" value="Conclusion" onclick="cnclsn();" disabled="">
+                            </div>
+                            <div class="firstdiv" id="stepss">
+                                <div id="step_one" style="display: none">
+                                    Irrespective of frames speed, speed of light is same in all frames<br>
+                                    The frame at left is Rest Frame and it is at rest. <br>
+                                    The frame at right is Moving Frame and it is moving with velocity of light. <br>
+                                    Derivation :-<br><br>
+                                </div>
+                                <div id="step_two" style="display: none">
+                                    <span style="display: inline-block">$$u_x=\frac{dx}{dt}=\frac{dx'+vdt'}{dt'+\frac{vdx'}{c^2}}=\frac{\frac{dx'}{dt'}+v\frac{dt'}{dt'}}{\frac{dt'}{dt'}+\frac{v}{c^2}\frac{dx'}{dt'}}$$ </span> <br><br>
+                                </div>
+                                <div id="step_three" style="display: none">
+                                    $$u_x=\frac{u_x'+v}{1+\frac{v}{c^2}u_x'}$$<br><br>
+                                </div>
+                                <div id="step_four" style="display: none">
+                                    $$u_y=\frac{u_y'\sqrt (1-\beta^2)}{1+\frac{v}{c^2}u_x'}$$ and $$u_z=\frac{u_z'\sqrt (1-\beta^2)}{1+\frac{v}{c^2}u_x'}$$<br><br>
+                                </div>
+                                <div id="step_five" style="display: none">
+                                    $$u_x'=\frac{u_x-v}{1-\frac{vu_x}{c^2}}$$;$$u_y'=\frac{u_y\sqrt (1-\beta^2)}{1-\frac{vu_x}{c^2}}$$<br><br>
+                                </div>
+                                <div id="step_six" style="display: none">
+                                    $$u_z'=\frac{u_z\sqrt (1-\beta^2)}{1-\frac{vu_y}{c^2}}$$<br><br>
+                                </div>
+                                <div id="step_seven" style="display: none">
+                                    $$u=\frac{u'+v}{1+\frac{u'v}{c^2}}$$<br><br>
+                                </div>
+                                <div id="step_eight" style="display: none">
+                                    $$u_x=\frac{c+v}{1+\frac{cv}{c^2}}=\frac{c+v}{\frac{c+v}{c}}=c$$<br><br>
+                                </div>
+                                <div id="step_nine" style="display: none">
+                                    $$u_x=\frac{c-k+c-k'}{1+\frac{(c-k)(c-k')}{c^2}}=\frac{2c-(k+k')}{2c-(k+k')+\frac{kk'}{c}}-c\lt c$$<br><br>
+                                </div>
+                                <div id="step_ten" style="display: none">
+                                    $$u_x=\frac{c+c}{1+\frac{c^2}{c^2}}=c$$<br><br>
+                                </div>
+                                
+                            </div>
+                            <div class="calci" id="calculationpart">
+                                <table id="vtb1" BORDER="1" CELLSPACING="2" CELLPADDING="2">
+                                    <tr>
+                                        <td>
+                                            <H1 align=center>Einstein Velocity Addition
+                                            </H1>
+                                            <p> The Einstein velocity relationship transforms a measured velocity as
+                                                seen in one inertial frame of reference (u) to the velocity as measured in a frame moving at
+                                                velocity v with respect to it (u'). In problems involving more than two objects, the main difficulty
+                                                is the assignment of velocity to all the objects.
+                                
+                                            </p>
+                                            <center><img src="./images/evel2.gif"></center><br><br>
+                                            <p>If A sees B moving at velocity v, then a velocity measured by B (u') would be seen by A as:</p>
+                                            <center><img src="./images/evel3.gif"></center><br>
+                                            <p>These relationships make perfect sense at low speeds where both denominators approach 1. </p>
+                                        </td>
+                                        <td>
+                                            <input type="button" value="Next" onclick="nextsteps();">
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table id="vtb2" BORDER="1" CELLSPACING="2" CELLPADDING="2">
+                                    <tr>
+                                        <td>
+                                            <h3 align=center>Relativistic Relative Velocity
+                                            </h3>
+                                            <p> The speed of light is the speed limit of the universe, so it follows that no observer will see any
+                                                other observer approaching or receding at a speed greater than c. But what if observers A and B are
+                                                both moving toward each other with speeds approaching c as seen by an external observer? How will A
+                                                and B measure their relative speeds? This is an example of Einstein velocity addition.
+                                                In the calculation below, velocities to the right are taken as positive.
+                                            </p>
+                                            <center><img src="./images/evel4.gif"></center><br>
+                                
+                                            <script LANGUAGE="JavaScript">
+                                                function ucal() { fh = document.forms[0]; vva = fh.va.value; vvb = fh.vb.value; fh.up.value = (vvb - vva) / (1 - vva * vvb) }
+                                            </script>
+                                
+                                
+                                            <FORM method="" action="">
+                                                <table>
+                                                    <tr>
+                                                        <td>If </td>
+                                                        <td>
+                                                            <font size=+1>v<sub>A</sub></font>
+                                                        </td>
+                                                        <td>= <INPUT Type="text" Name="va" Value="" Size="6" oninput=ucal()> </td>
+                                                        <td>
+                                                            <font size=+1>c
+                                                        </td>
+                                                        <td> and </td>
+                                                        <td>
+                                                            <font size=+1>v<sub>B</sub>
+                                                        </td>
+                                                        <td>= <INPUT Type="text" Name="vb" Value="" Size="6" oninput=ucal()></td>
+                                                        <td>
+                                                            <font size=+1>c
+                                                        </td>
+                                                        <td>
+                                                            then </td>
+                                                        <td>
+                                                            <font size=+1>u'
+                                                        </td>
+                                                        <td>= <INPUT Type="text" Name="up" Value="" Size="8" onChange=ucal() disabled = ""></td>
+                                                        <td>
+                                                            <font size=+1>c.
+                                                        </td>
+                                                    </tr>
+                                                </table><br>
+                                            </form>
+                                
+                                            Exactly the same magnitude of velocity is obtained if you evaluate the approach velocity as observed by
+                                            B.
+                                        </td>
+                                        <td>
+                                            <input type="button" value="Next" onclick="nextsteps();">
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table id="vtb3" BORDER="1" CELLSPACING="2" CELLPADDING="2">
+                                    <tr>
+                                        <td>
+                                            <h3 align=center>Relativistic Projectile
+                                            </h3>
+                                            <p>Now if spacecraft A fires a projectile at velocity Vp as measured in A's frame of reference, then the
+                                                two relevant questions are:</p>
+                                            <p>1. How fast will an external observer see the projectile traveling?</p>
+                                            <p>2. How fast will B see the projectile approaching?</p>
+                                            <p>This is an example of Einstein velocity addition.</p>
+                                            <center><img src="./images/evel5.gif"></center><br>
+                                            Taking question #1 first, then in the standard form:<br>
+                                            <center><img src="./images/evel6.gif"></center><br>
+                                
+                                            <SCRIPT LANGUAGE="JavaScript">
+                                                function ucal1() { fh = document.forms[1]; vva1 = fh.va1.value; vvp = fh.vp.value; uu1 = (vva1 - (-1) * vvp) / (1 - (-1) * vva1 * vvp); fh.u1.value = uu1; fh.ua.value = uu1; vvb1 = fh.vb1.value; fh.up1.value = (uu1 - vvb1) / (1 - uu1 * vvb1) }
+                                            </script>
+                                
+                                
+                                            <FORM method="" action="">
+                                                <table>
+                                                    <tr>
+                                                        <td>If </td>
+                                                        <td>
+                                                            <font size=+1>v<sub>A</sub></font>
+                                                        </td>
+                                                        <td>= <INPUT Type="text" Name="va1" Value="" Size="6" oninput=ucal1()> </td>
+                                                        <td>
+                                                            <font size=+1>c</font>
+                                                        </td>
+                                                        <td> and </td>
+                                                        <td>
+                                                            <font size=+1>v<sub>P</sub></font>
+                                                        </td>
+                                                        <td>= <INPUT Type="text" Name="vp" Value="" Size="6" oninput=ucal1()></td>
+                                                        <td>
+                                                            <font size=+1>c</font>
+                                                        </td>
+                                                        <td>
+                                                            then </td>
+                                                        <td>
+                                                            <font size=+1>u</font>
+                                                        </td>
+                                                        <td>= <INPUT Type="text" Name="u1" Value="" Size="8" onChange=ucal1() disabled=""></td>
+                                                        <td>
+                                                            <font size=+1>c</font>.
+                                                        </td>
+                                                    </tr>
+                                                </table><br>
+                                
+                                
+                                
+                                
+                                                Note that for low velocities, this is the simple sum of the velocities of the firing spacecraft and
+                                                the projectile as seen by that spacecraft. <br><br>
+                                                Now to calculate the approach velocity as seen by the targeted spacecraft B:
+                                                <center><img src="./images/evel7.gif"></center><br>
+                                
+                                                <table>
+                                                    <tr>
+                                                        <td>If </td>
+                                                        <td>
+                                                            <font size=+1>u(above)</font>
+                                                        </td>
+                                                        <td>= <INPUT Type="text" Name="ua" Value="" Size="6" oninput=ucal1() disabled=""> </td>
+                                                        <td>
+                                                            <font size=+1>c</font>
+                                                        </td>
+                                                        <td> and </td>
+                                                        <td>
+                                                            <font size=+1>v<sub>B</sub></font>
+                                                        </td>
+                                                        <td>= <INPUT Type="text" Name="vb1" Value="" Size="6" oninput=ucal1()></td>
+                                                        <td>
+                                                            <font size=+1>c</font>
+                                                        </td>
+                                                        <td>
+                                                            then </td>
+                                                        <td>
+                                                            <font size=+1>u'</font>
+                                                        </td>
+                                                        <td>= <INPUT Type="text" Name="up1" Value="" Size="8" onChange=ucal1() disabled=""></td>
+                                                        <td>
+                                                            <font size=+1>c</font>.
+                                                        </td>
+                                                    </tr>
+                                                </table><br>
+                                
+                                
+                                            </form>
+                                
+                                            For low speeds, this expression yields a value equal to the sum of the magnitudes of the three
+                                            velocities as indicated in the diagram. The Einstein velocity addition gaurantees that the resultant
+                                            velocity does not exceed c, even if all three of the indicated velocities approach c!
+                                        </td>
+                                        <td>
+                                            <input type="button" value="Next" onclick="nextsteps();">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="thirddiv" id="thirddiv">
+                                <fieldset>
+                                    <h2>CONCLUSION</h2>
+                                    <label>
+                                        <h4>Please choose the correct conclusion(s) :</h4>
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" id="ch1">&nbsp;Any signal can go faster than speed of light.<br>
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" id="ch2">&nbsp;No signal can go faster than speed of light.<br>
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" id="ch3">&nbsp;Speed of light is same in all inertial frames.<br>
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" id="ch4">&nbsp;Velocity Addition formula is based on Lorentz Transformation Equation.<br>
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" id="ch5">&nbsp;Velocity of light varies in different inertial frames.<br>
+                                    </label>
+                                    <br>
+                                    <input type="button" value="Submit" id="bcheck1" onclick="checkbox1();">
+                            
+                                </fieldset>
+                            
+                            </div>
+                        </div>           
+                </th>
+            </tr>
+        </table>
+
+
+
+        <script>
+            var flag = 0;
+            var counter = 0;
+            vtb1 = document.getElementById("vtb1");
+            vtb2 = document.getElementById("vtb2");
+            vtb3 = document.getElementById("vtb3");
+            document.getElementById("btn1").disabled = 'true';
+            initial_screen = document.getElementById("initial_screen");
+            initial_screen.style.display ="block";
+            vtb2.style.display = "none";
+            vtb3.style.display = "none";
+            vtb1.style.display = "none";
+            // Disabling  the field and initializing variables globally so that user cant hinder with simulator
+            document.getElementById("thirddiv").style.visibility = 'hidden';
+            document.getElementById("thirddiv").style.opacity = 0;
+            var btn0 = document.getElementById("btn0");
+            var a = document.getElementById("rb10");
+            var b = document.getElementById("rb20");
+            var c = document.getElementById("rb30");
+            var d = document.getElementById("rb40");
+            var a1 = document.getElementById("ch1");
+            var b1 = document.getElementById("ch2");
+            var c1 = document.getElementById("ch3");
+            var d1 = document.getElementById("ch4");
+            var e1 = document.getElementById("ch5");
+            var flag = 0;
+            function changesteps() {
+                    if (flag == 0) {
+                        initial_screen.style.display = "none";
+                        document.getElementById("step_one").style.display = "block";
+                        flag = flag + 1;
+                    }
+                    else if (flag == 1) {
+                        document.getElementById("step_two").style.display = "block";
+                        flag = flag + 1;
+                    }
+                    else if (flag == 2) {
+                        document.getElementById("step_three").style.display = "block";
+                        flag = flag + 1;
+                    }
+                    else if (flag == 3) {
+                        document.getElementById("step_one").style.display = "none";
+                        document.getElementById("step_two").style.display = "none";
+                        document.getElementById("step_three").style.display = "none";
+                        document.getElementById("step_four").style.display = "block";
+                        flag = flag + 1;
+                    }
+                    else if (flag == 4) {
+                        document.getElementById("step_five").style.display = "block";
+                        flag = flag + 1;
+                    }
+                    else if (flag == 5) {
+                        document.getElementById("step_six").style.display = "block";
+                        flag = flag + 1;
+                    }
+                    else if (flag == 6) {
+                        document.getElementById("step_four").style.display = "none";
+                        document.getElementById("step_five").style.display = "none";
+                        document.getElementById("step_six").style.display = "none";
+                        document.getElementById("step_seven").style.display = "block";
+                        flag = flag + 1;
+                    }
+                    else if (flag == 7) {
+                        document.getElementById("step_eight").style.display = "block";
+                        flag = flag + 1;
+                    }
+                    else if (flag == 8) {
+                        document.getElementById("step_nine").style.display = "block";
+                        flag = flag + 1;
+                    }
+                    else if (flag == 9) {
+                        document.getElementById("step_seven").style.display = "none";
+                        document.getElementById("step_eight").style.display = "none";
+                        document.getElementById("step_nine").style.display = "none";
+                        document.getElementById("step_ten").style.display = "block";
+                        flag = flag + 1;
+                    }
+                    else if(flag == 10) {
+                        document.getElementById("step_ten").style.display = "none";
+                        alert("Velocity Of Light Is Same in all frames");
+                        initial_screen.style.display = "block";
+                        flag += 1;
+                        document.getElementById("btn5").disabled = false
+                    }
+                    else
+                    {
+                        if(!confirm("Please Restart The Experiment To See All The Steps Again")){
+                            changesteps();
+                        }
+                    }
+                }
+            
+            function nextsteps() {
+                document.getElementById("btn5").disabled = false
+                    if(counter == 0){
+                        document.getElementById("btn1").style.opacity = 0;
+                        vtb1.style.display = "block";
+                        counter += 1;
+                        alert("Press Next button after reading the content.");
+                    }
+                    else if (counter == 1) {
+                        alert("Calculate the value of u' below. After completing press Next button for next step.");
+                        vtb2.style.display = "block";
+                        vtb1.style.display = "none";
+                        counter += 1;
+                    }
+                    else if (counter == 2) {
+                        alert("Calculate the value of u and u' below. After completing press Next button for next step.");
+                        vtb3.style.display = "block";
+                        vtb2.style.display = "none";
+                        counter += 1;
+                    }
+                    else {
+                        alert("All Calculation Ended");
+                        vtb3.style.display = "none";
+                        initial_screen.style.display = " block";
+                        document.getElementById("btn1").style.opacity = 1;
+                    }
+            }
+
+            const check = () =>  {
+              let val = confirm("Considering Object Are Moving With Uniform Relativestic Speed In Two Different Frames\nWe Have To Calculate Relative Speed Of Particle In Moving Frame With Respect To Particle Moving At Frame In Rest")
+              if(!val)
+                check();
+              }
+            check();
+
+            function strt()
+            {
+                document.getElementById("btn1").disabled = false;
+                anim();
+            }
+
+            function anim()
+            {
+                document.getElementById('rocket1').style.animationPlayState = "running";
+                document.getElementById('rocket2').style.animationPlayState = "running";
+            }
+
+            //function on clicking Learn About Velocity Addition
+            function learn()
+            {
+              initial_screen.style.display = "none";
+              nextsteps();
+            }
+
+            // Reset Whole Window
+            function res()
+            {
+                document.getElementById("ch1").checked=false;
+                document.getElementById("ch2").checked=false;
+                document.getElementById("ch3").checked=false;
+                document.getElementById("ch4").checked=false;
+                document.getElementById("ch5").checked=false;
+                window.location.reload();
+            }
+
+            // Conclusion Button
+            function cnclsn()
+            {
+                initial_screen.style.display = "none";
+                document.getElementById("thirddiv").style.opacity = 1;
+                document.getElementById("thirddiv").setAttribute('style', 'visibility:visible');
+
+            }
+
+            function checkbox1() {
+                    document.getElementById("thirddiv").setAttribute('style', 'visibility:visible');
+                    document.getElementById("thirddiv").style.opacity = 1;
+
+                    if ((b1.checked == true && c1.checked == true && d1.checked == true) && (a1.checked == false && e1.checked == false)) {
+                        alert("Congratulations! You have completed the experiment successfully.");
+                    }
+                    else if ((a1.checked == true || e1.checked == true) && (b1.checked == true || c1.checked == true || d1.checked == true)) {
+                        alert("There might be a wrong option selected.\nPlese refer the theory and try again.");
+                    }
+                    else if (b1.checked == true && c1.checked == true && d1.checked == false) {
+                        alert("All correct options are not selected.\nRead all the options once again.");
+                    }
+                    else if (d1.checked == true && c1.checked == true && b1.checked == false) {
+                        alert("All correct options are not selected.\nRead all the options once again.");
+                    }
+                    else if (d1.checked == true && b1.checked == true && c1.checked == false) {
+                        alert("All correct options are not selected.\nRead all the options once again.");
+                    }
+                    else if ((a1.checked == true && e1.checked == true) && (b1.checked == false && c1.checked == false && d1.checked == false)) {
+                        alert("Sorry, your answer is incorrect.\nPlease refer to the theory and try again.");
+                    }
+                    else if (a1.checked == false && b1.checked == false && c1.checked == false && d1.checked == false && e1.checked == false) {
+                        alert("Select atlest one option.");
+                    }
+                    else {
+                        alert("Sorry, your answer is incorrect.\nPlease refer to the theory and try again.");
+                    }
+                }
+
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title></title>
+</head>
+
+<body>
+ <canvas id="mycanvas" width="600" height="500"
+ style="border:solid;border-color:black"></canvas><br/>
+ <input type="button" value="change color" onclick="changecolor();"/>
+ <input type="button" value="Connect" onclick="connectr();"/>
+ 
+ <script src="C:\Users\HP-PC\Desktop\Bootcamp\murphydots_aparna\training\13.mouse\circlewithevent.js"></script>
+ <script>
+   var canvas = document.getElementById("mycanvas");
+   var context = canvas.getContext("2d");
+   var circlecontainer = [];
+   var find1=0;
+   var start1=0;
+   var storei=-1;
+   
+     
+   function mouseevt(x,y)
+   {
+   
+      if(find1==0)
+   {
+      var a = new mycircle(canvas, x, y);
+      a.draw();
+      circlecontainer.push({circle:a,x:x,y:y});
+      }
+      else if(find1==1)
+      {
+      r=Math.pow(circlecontainer[i].x-x,2)+Math.pow(circlecontainer);
+      r=Math.sqrt(r);
+      if(r<25)
+      {
+      circlecontainer[i].circle.mycolor="blue";
+      break;
+      }
+      context.clearRect(0,0, canvas.width, canvas.height);
+      for(i=0; i < circlecontainer.length; i++)
+      {
+      circlecontainer[i].circle.draw();
+      }
+      }
+      else
+      {
+      for (i=0;i <circlecontainer.length; i++)
+      {
+      r=
+      context.drawImage(image, x, y);
+      }
+      else if(i==2)
+      {
+       image=document.getElementById("duck");
+       context.drawImage(image, x, y);
+       }
+       
+       }
+       function cat1()
+       {
+       i=1;
+       }
+       function duck1()
+       {
+         i=2;
+         }
+                  
+  </script>
+  <script src="C:\Users\HP-PC\Desktop\Bootcamp\murphydots_aparna\training\13.mouse\mouseevent.ob.js"></script>
+
+</body>
+
+</html>

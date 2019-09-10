@@ -1,0 +1,270 @@
+<html>
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title> Virtual Labs </title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <h2 style="text-align: center"><legend>Velocity Addition</legend></h2>
+        <!-- CSS File  -->
+        <link rel="stylesheet" href="./css/main.css">
+        <!-- Scripts Used For Coding -->
+        <script src="./js/animation.ob.js"></script>
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        <script src="./js/graph.ob.js"></script>
+        <script src="./js/graph_use.ob.js"></script>
+        <script src="./js/graph_use2.ob.js"></script>
+
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $(".play-animation").click(function () {
+                        $(".mycanvas").css("animation-play-state", "running");
+                    });
+                    $(".play-animation").click(function () {
+                        $(".mycanvas1").css("animation-play-state", "running");
+                    });
+                });
+            </script>
+        
+
+        <script>
+            function anim(){
+                document.getElementById('rocket1').style.animationPlayState = "running";
+                document.getElementById('rocket2').style.animationPlayState = "running";
+            }
+        </script>
+    </head>
+
+    <body>
+        <!-- Table For Making All the Contents Aligned in screen -->
+        <table>
+            <tr>
+                <th>
+                    <div class="mycanvas">
+                        <img id="rocket1" class="rocket1" src="./images/rocket.png">
+                    </div>
+                </th>
+                <th>
+                    <div class="mycanvas1">
+                        <img id="rocket2" class="rocket2" src="./images/rocket.png">
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th><!-- All types Of Button and Textfields -->
+                    <p id="para1" style="width: 750px">
+                        <label>Rest Frame</label>
+                        <input type="button"  id="btn1" value="Next" onclick="next_animation();"><br><br>
+                        <br><input type="button" id="btn0" value="Calculate Relativstic Velocity" onclick="learn();">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="button" class="play-animation" id="btn2" value="Learn Through Animation" onclick="strt();"><br><br>
+
+                        <label id="lb1"></label><br><br>
+                        <!--<input type="button" class="stop-animation" id="btn1.5" value="Stop Animation" onclick="stop1();" -->
+                        <input type="button" value="start" onclick="anim()">
+                        <input type="button" id="btn4" value="Reset" onclick="res();">
+                        <input type="button" id="btn5" value="Conclusion" onclick="cnclsn();">
+
+                    </p>
+                </th>
+                <th id="para2"><!-- All Dynamic front end Things Here -->
+                    <table style="position: absolute; top: 0px; left: 0px; ">
+                        <th id="th2" colspan="2" style="border: 20px; border-color: black">
+                            <div class="wrapit">
+                                <div class="firstdiv" id="firstdiv">
+                                    <fieldset>
+                                        <legend>What If Our Speed Is Greater Than or Equal to Speed Of Light?</legend>
+                                        <p>
+                                            <label>Please Choose What You Think?</label><br><br>
+
+                                            <input type="radio" name="radSize" id="rb1" value="small" />
+                                            <label>Space Ship Will Blast</label><br>
+
+                                            <input type="radio" name="radSize" id="rb2" value="medium" />
+                                            <label>Space Ship Will Become Black Hole</label><br>
+
+                                            <input type="radio" name="radSize" id="rb3" value="large" />
+                                            <label>No object can go faster than velocity of light</label><br>
+
+                                            <input type="radio" name="radSize" id="rb4" value="large" />
+                                            <label>None Of These </label><br>
+
+                                            <input type="button" value="Submit Answer" onclick="chk();">
+                                        </p>
+                                    </fieldset>
+                                </div>
+                                <div class="seconddiv" id="seconddiv">
+                                <fieldset>
+                                        <h2>What if our speed of spaceship is not relativistic?</h2>
+                                    <label>
+                                        <h4>Please choose what you think?</h4>
+                                    </label>
+                                    <br>
+                                    <label>
+                                        <input type="radio" name="but" id="rb10">&nbsp;The spaceship will act as a particle.<br>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="but" id="rb20">&nbsp;The spaceship will stop moving. <br>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="but" id="rb30">&nbsp;Time will not be dilated. <br>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="but" id="rb40">&nbsp;Spaceship will blast. <br>
+                                    </label>
+                                    <br>
+                                    <input type="button" value="Submit" id="b1" onclick="check1();">
+                                </fieldset>
+                                </div>
+                                <div class="thirddiv" id="thirddiv">
+                                        <fieldset>
+                                                <h2>CONCLUSION</h2>
+                                            <label>
+                                                <h4>Please choose the correct conclusion(s) :</h4>
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" id="ch1">&nbsp;Time Dilation is applicable only on classical speed.<br>
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" id="ch2">&nbsp;Time Dilation is applicable only on relativistic speed.<br>
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" id="ch3">&nbsp;Time Dilation follows postulates of Special Theory of Relativity.<br>
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" id="ch4">&nbsp;Time Dilation follows Lorentz Trnasformation Equation.<br>
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" id="ch5">&nbsp;Time Dilation follows Galilean Trnasformation Equation.<br>
+                                            </label>
+                                            <br>
+                                            <input type="button" value="Submit" id="bcheck1" onclick="checkbox1();">
+
+                                    </fieldset>
+
+                                </div>
+                            </div>
+
+                        </th>
+                    </table>
+                </th>
+            </tr>
+        </table>
+
+
+
+        <script>
+            var counter = 0;
+
+            const check = () =>  {
+              let val = confirm("Considering Particles Are Moving With Uniform Relativestic Speed In Two Different Frames\nWe Have To Calculate Relative Speed Of Particle In Moving Frame With Respect To Particle Moving At Frame In Rest")
+              if(!val)
+                check();
+              }
+            check();
+
+            // Disabling  the field and initializing variables globally so that user cant hinder with simulator
+            document.getElementById("firstdiv").style.visibility='hidden';
+            document.getElementById("seconddiv").style.visibility = 'hidden';
+            document.getElementById("thirddiv").style.visibility = 'hidden';
+
+            document.getElementById("firstdiv").style.opacity = 0;
+            document.getElementById("seconddiv").style.opacity = 0;
+            document.getElementById("thirddiv").style.opacity = 0;
+
+            document.getElementById("btn1").disabled = 'true';
+
+            function next_animation()
+            {
+              document.getElementById("btn0").disabled = 'true';
+              switch(counter)
+              {
+                default:{
+                  alert("You Have succesfully completed the experiment you can check through values now");
+
+                }
+              }
+            }
+
+
+            var btn0 = document.getElementById("btn0");
+
+            var a = document.getElementById("rb10");
+            var b = document.getElementById("rb20");
+            var c = document.getElementById("rb30");
+            var d = document.getElementById("rb40");
+            var a1 = document.getElementById("ch1");
+            var b1 = document.getElementById("ch2");
+            var c1 = document.getElementById("ch3");
+            var d1 = document.getElementById("ch4");
+            var e1 = document.getElementById("ch5");
+
+            //function on clicking Learn About Velocity Addition
+            function learn()
+            {
+              var val = prompt("Please Enter The Relativstic Speed");
+              if(isNaN(val))
+              {
+                alert("PLease Enter The Valid Data");
+                learn();
+                return;
+              }
+              else if(val>=1 || val<0)
+                {
+                  if(!confirm("Velocity Cannot be Negative OR \n Greater Than The Speed Of Light"))
+                    {
+                      alert("Try To Cooperate");
+                    }
+                }
+              else {
+                  if(val == null)
+                    {
+                      return;
+                    }
+
+                  document.getElementById("lb1").innerHTML="Its relative Speed is "+ calc(val)+"<strong>c</strong>";
+              }
+
+            }
+
+            //function to calculate
+            const calc = (x) =>{
+              return (2*x/(1+(x*x)));
+            }
+
+            // Reset Whole Window
+            function res()
+            {
+                document.getElementById("rb10").checked=false;
+                document.getElementById("rb20").checked=false;
+                document.getElementById("rb30").checked=false;
+                document.getElementById("rb40").checked=false;
+                document.getElementById("rb1").checked=false;
+                document.getElementById("rb2").checked=false;
+                document.getElementById("rb3").checked=false;
+                document.getElementById("rb4").checked=false;
+                document.getElementById("ch1").checked=false;
+                document.getElementById("ch2").checked=false;
+                document.getElementById("ch3").checked=false;
+                document.getElementById("ch4").checked=false;
+                document.getElementById("ch5").checked=false;
+                window.location.reload();
+            }
+
+            // Conclusion Button
+            function cnclsn()
+            {
+                document.getElementById("seconddiv").style.opacity = 0;
+                document.getElementById("seconddiv").setAttribute('style', 'visibility:hidden');
+
+                document.getElementById("thirddiv").style.opacity = 1;
+                document.getElementById("thirddiv").setAttribute('style', 'visibility:visible');
+
+            }
+
+        </script>
+    </body>
+
+</html>

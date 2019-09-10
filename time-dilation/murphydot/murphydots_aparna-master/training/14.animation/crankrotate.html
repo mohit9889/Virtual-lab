@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <script src="animation.ob.js"></script>
+</head>
+<body>
+<canvas id="mycanvas" width="600" height="500" style="border:solid;border-color:black"></canvas><br />
+    
+    <input type="button" value="Start" onclick="startanim();" />
+    <input type="button" value="Stop" onclick="stopanim();" />
+    <script src="circlewithevent.js"></script>
+    <script>
+
+        var canvas = document.getElementById("mycanvas");
+        var context = canvas.getContext("2d");
+        
+        
+        //added content
+        var anim = new Animation("mycanvas");
+        var animcanvas = anim.getCanvas();
+        var animcontext = anim.getContext();
+        anim.setStage(stage);
+        
+        var th=0;
+        //
+        
+        function stage()
+        {
+            context.clearRect(0, 0, animcanvas.width, animcanvas.height);
+            context.beginPath();
+        context.moveTo(200, 200);
+        context.lineTo(200+100*Math.cos(th*Math.PI/180), 200+100*Math.sin(th*Math.PI/180));
+        context.strokeStyle = "black"
+        context.lineWidth = 3;
+        context.stroke();
+        th++;
+        if(th>=360)
+        {
+         th=0;
+        }
+
+        }
+
+	function startanim()
+	{
+	  anim.start()
+	}
+        function stopanim()
+        {
+            anim.stop();
+        }
+    </script>
+    
+</body>
+</html>

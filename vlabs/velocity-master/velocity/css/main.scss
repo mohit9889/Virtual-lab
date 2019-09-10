@@ -1,0 +1,128 @@
+body{
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden;
+}
+
+.mycanvas{
+    position: relative;
+    overflow: hidden;
+    height: 500px;
+    width: 750px;
+    background-color: black;
+    background: url(./css_images/star3.png), url(./css_images/akash.png);
+    background-position: 0px 0px, 0px 0px;
+    background-repeat: repeat-x, repeat-x;
+    animation: animate linear 10s infinite;
+}
+
+.rocket1{
+    position: absolute;
+    left: 0;
+    top: 200px;
+    animation: rocket1_anim linear 5s infinite; 
+    animation-play-state: paused; 
+}
+
+@keyframes rocket1_anim{
+    from{
+        transform: translateX(-10px);
+    }
+    to{
+        transform: translateX(690px);
+    }
+}
+
+.mycanvas1{
+    position: relative;
+    overflow: hidden;
+    height: 500px;
+    width: 750px;
+    background-color: black;
+    background: url(./css_images/star3.png), url(./css_images/akash.png);
+    background-position: 0px 0px, 0px 0px;
+    background-repeat: repeat-x, repeat-x;
+    animation: animate linear 2s infinite;
+}
+
+.rocket2{
+    position: absolute;
+    left: 0;
+    top: 200px;
+    animation: rocket2_anim linear 2s infinite;
+    animation-play-state: paused;
+}
+
+@keyframes rocket2_anim {
+    from{
+        transform: translateX(0px);
+    }
+    to{
+        transform: translateX(690px);
+    }
+}
+
+
+
+
+@keyframes animate{
+    frmo{
+        background-position: 0px 0px, 0px 0px;
+    }
+    to{
+        background-position: -700px 0px, -500px 0px;
+    }
+}
+
+#btn1{
+    position: absolute;
+    left: 150px;
+}
+#btn2{
+    position: absolute;
+    left: 500px;
+}
+
+#para1, #para2{
+    position: relative;
+    width: 600px;
+    height: 300px;
+}
+
+#l1{
+    width: 600px;
+    height: 500px;
+}
+
+#th2{
+    position: absolute;
+    left: 180px;
+    width: 400px;
+}
+
+td, th{
+    border: solid;
+    width: 50px;
+    border-color: black;
+
+}
+
+.wrapit{
+    top: 0;
+    width: 420px;
+    height: 300px;
+    position: relative;
+}
+
+.firstdiv, .secondiv, .thirddiv{
+    top: 0;
+    position: absolute;
+}
+
+#row1{
+    width: 50px;
+}
+
+#row2{
+    width: 50px;   
+}

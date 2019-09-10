@@ -1,0 +1,17 @@
+For windows:
+1. Git download https://git-scm.com/download/win
+2. Html editor:
+	Dotnet 4 (only for windows 7, windows 8.1 and windows 10 it is inbuilt)
+	Expression web 4 download https://www.microsoft.com/en-in/download/details.aspx?id=36179
+3. Google web designer
+
+For Linux:
+1. Git Installing on Linux
+	If you want to install the basic Git tools on Linux via a binary installer, you can generally do so through the basic package-management tool that comes with your distribution. If you’re on Fedora for example, you can use yum:
+	$ sudo yum install git-all
+	If you’re on a Debian-based distribution like Ubuntu, try apt-get:
+	$ sudo apt-get install git-all
+2. Html editor:
+	bracket  http://brackets.io/ or bluefish http://bluefish.openoffice.nl/download.html
+3. Google web designer
+

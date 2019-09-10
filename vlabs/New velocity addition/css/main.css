@@ -1,0 +1,177 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.mycanvas {
+  position: relative;
+  overflow: hidden;
+  height: 500px;
+  width: 750px;
+  background-color: black;
+  background: url(./css_images/star3.png), url(./css_images/akash.png);
+  background-position: 0px 0px, 0px 0px;
+  background-repeat: repeat-x, repeat-x;
+  -webkit-animation: animate1 linear 10s infinite;
+          animation: animate1 linear 10s infinite;
+}
+
+.rocket1 {
+  position: absolute;
+  left: 0;
+  top: 200px;
+  opacity: 0.6;
+  -webkit-animation: rocket1_anim linear 5s infinite;
+          animation: rocket1_anim linear 5s infinite;
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+
+@-webkit-keyframes rocket1_anim {
+  from {
+    -webkit-transform: translateX(-10px);
+            transform: translateX(-10px);
+  }
+  to {
+    -webkit-transform: translateX(690px);
+            transform: translateX(690px);
+  }
+}
+
+@keyframes rocket1_anim {
+  from {
+    -webkit-transform: translateX(-10px);
+            transform: translateX(-10px);
+  }
+  to {
+    -webkit-transform: translateX(690px);
+            transform: translateX(690px);
+  }
+}
+
+.mycanvas1 {
+  position: relative;
+  overflow: hidden;
+  height: 500px;
+  width: 750px;
+  background-color: black;
+  background: url(./css_images/star3.png), url(./css_images/akash.png);
+  background-position: 0px 0px, 0px 0px;
+  background-repeat: repeat-x, repeat-x;
+  -webkit-animation: animate linear 1s infinite;
+          animation: animate linear 1s infinite;
+}
+
+.rocket2 {
+  position: absolute;
+  left: 0;
+  top: 200px;
+  opacity: 0.7;
+  -webkit-animation: rocket2_anim linear 2s infinite;
+          animation: rocket2_anim linear 2s infinite;
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+
+@-webkit-keyframes rocket2_anim {
+  from {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+  to {
+    -webkit-transform: translateX(690px);
+            transform: translateX(690px);
+  }
+}
+
+@keyframes rocket2_anim {
+  from {
+    -webkit-transform: translateX(690px);
+            transform: translateX(690px);
+  }
+  to {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+}
+
+@-webkit-keyframes animate {
+  from {
+    background-position: 0px 0px, 0px 0px;
+  }
+  to {
+    background-position: -700px 0px, -500px 0px;
+  }
+}
+
+@keyframes animate {
+  to {
+    background-position: 0px 0px, 0px 0px;
+  }
+  from {
+    background-position: -700px 0px, -500px 0px;
+  }
+}
+
+@-webkit-keyframes animate1 {
+  from {
+    background-position: 0px 0px, 0px 0px;
+  }
+  to {
+    background-position: -700px 0px, -500px 0px;
+  }
+}
+
+@keyframes animate1 {
+  from {
+    background-position: 0px 0px, 0px 0px;
+  }
+  to {
+    background-position: -700px 0px, -500px 0px;
+  }
+}
+
+#btn1{
+  top: 30px;
+  width: 100px;
+  position: relative;
+
+}
+
+#btn0 {
+  position: relative;
+  margin-left: 120%;
+}
+
+#btn2 {
+  position: relative;
+  top: -35px;
+  margin-left: 195%;
+  
+}
+
+#btn4{
+  position: relative;
+  left: 110%;
+  width: 100px;
+  top: -20px;
+}
+
+#btn5{
+  position: relative;
+  left: 150%;
+  top: -20px;
+}
+
+
+.wrapit{
+  top: 0;
+  position: relative;
+}
+
+.firstdiv, .calci, .thirddiv {
+  top: 0;
+  position: absolute;
+}
+
+/*# sourceMappingURL=main.css.map */
