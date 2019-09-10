@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <input type="text" style="width:100px" id="t1" />
+    <input type="button" value="substring" onclick="find();"/>
+    <script>
+        function find()
+        {
+            var a = document.getElementById("t1").value;
+            var b = a.substring(0, 2);
+            alert(b);
+        }
+
+
+    </script>
+
+
+
+
+    <br />
+    <input type="text" style="width:100px" id="t2" />
+    <input type="button" value="substring" onclick="realimg();" />
+    <script>
+        function realimg()
+        {
+            var a = document.getElementById("t2").value;
+            var i = a.indexOf("+");
+            var real = parseFloat(a.substring(0, i));
+            var img = parseFloat(a.substring(i + 2, a.length));
+            alert("Real:" + real + "  " + "img:" + img);
+        }
+    </script>
+</body>
+</html>

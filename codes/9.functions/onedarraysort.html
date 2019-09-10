@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        td,th{
+            border:solid;
+        }
+    </style>
+</head>
+<body>
+    Select number of data&nbsp;
+    <select name="list1" id="list1" onchange="generate();">
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+        <option value="4">Four</option>
+        <option value="5">Five</option>
+        <option value="6">Six</option>
+        <option value="7">Seven</option>
+    </select>
+    <input type="button" value="Sort Array" onclick="sort1();" />
+    <table id="tb1">
+        <tr>
+            <th>Input Data</th>
+            <th>Sorted Data</th>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" id="t1" />
+            </td>
+            <td>
+                <input type="text" id="t11" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" id="t2" />
+            </td>
+            <td>
+                <input type="text" id="t22" />
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        function generate()
+        {
+            cleartable("tb1");
+            inserttable("tb1");
+
+        }
+        function cleartable()
+        {
+            var tb1 = document.getElementById("tb1");
+            while (tb1.rows.length > 1)
+            {
+                tb1.deleteRow(1);
+            }
+        }
+        function inserttable(tb1)
+        {
+            var tb1 = document.getElementById("tb1");
+            var n = parseInt(document.getElementById("list1").value);
+            for (i = 1; i <= n; i++)
+            {
+                var row = tb1.insertRow();
+                var cell = row.insertCell();
+                var t1 = document.createElement("input");
+                t1.type = "text";
+                t1.id = "t" + i;
+                cell.appendChild(t1);
+                var cell = row.insertCell();
+                var t1 = document.createElement("input");
+                t1.type = "text";
+                t1.id = "t" + i + i;
+                cell.appendChild(t1);
+
+            }
+        }
+
+        function sort1()
+        {
+            var a = [];
+            store(a);
+            sortarray(a)
+            display(a);
+        }
+
+        function store(a)
+        {
+            var n = parseInt(document.getElementById("list1").value);
+            for (i = 1; i <= n; i++)
+            {
+                a[i - 1] = parseInt(document.getElementById("t" + i).value);
+                
+                
+            }
+        }
+        function sortarray(x)
+        {
+            var temp;
+            //var n = parseInt(document.getElementById("list1").value);
+            for (i = 0; i < x.length - 1; i++)
+            {
+                for (j = i+1; j < x.length; j++)
+                {
+                    if (x[i] < x[j])
+                    {
+                        temp = x[i];
+                        x[i] = x[j];
+                        x[j] = temp;
+                        
+                    }
+                }
+            }
+        }
+        function display(y)
+        {
+            //var n = parseInt(document.getElementById("list1").value);
+            for (i = 1; i <= y.length; i++)
+            {
+                document.getElementById("t" + i + i).value = y[i - 1];
+            }
+        }
+    </script>
+</body>
+</html>

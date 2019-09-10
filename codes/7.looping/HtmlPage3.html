@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <input type="text" style="width:50px" id="t1"/>
+    <input type="button" value="factorial" onclick="fact();" />
+    <p id="p1"> </p>
+
+    <script>
+        function fact()
+        {
+            var sum = 1;
+            var i = 1;
+            var n = parseInt(document.getElementById("t1").value);
+            while (i <= n) {
+                sum = sum * i;
+                i++;
+            }
+            document.getElementById("p1").innerHTML = "factorial value is " + sum;
+        }
+        //do with for
+    </script>
+</body>
+</html>

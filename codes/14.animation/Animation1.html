@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="animation.ob.js"></script>
+</head>
+<body>
+    <canvas id="mycanvas" width="500" height="500"></canvas><br />
+    <input type="button" value="Start Animation" onclick="start1();"/>
+    <input type="button" value="Stop Animation" onclick="stop1();"/>
+    
+    <script>
+        var anim = new Animation("mycanvas");
+        var canvas = anim.getCanvas();
+        var context = anim.getContext();
+        var x = 10;
+        var y = 10;
+
+        function start1()
+        {
+            x = 10;
+            y = 10;
+            anim.setStage(stage);
+            anim.start();
+        }
+
+        function stage()
+        {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.beginPath();
+            context.rect(x,y,100,50);
+            context.fillStyle = 'blue';
+            context.fill();
+            context.lineWidth = "2";
+            context.strokeStyle = 'black';
+            context.stroke();
+            if(x<400)
+            {
+                x++;
+            }
+            else {
+                anim.stop();
+            }
+        }
+
+        function stop1()
+        {
+            anim.stop();
+        }
+
+
+        function mouseevt(x1, y1)
+        {
+            if (x1 - x < 100 && y1 - y < 50)
+            {
+                anim.stop();
+            }
+            else if(!anim.animating)
+            {
+                anim.start();
+            }
+            
+        }
+
+    </script>
+    <script src="mouseevent.js"></script>
+</body>
+</html>

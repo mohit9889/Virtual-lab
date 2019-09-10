@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <canvas id="mycanvas" width="600" height="500" style="border:solid;border-color:black"></canvas>
+    <script>
+        var canvas = document.getElementById('mycanvas');
+        var context = canvas.getContext("2d")
+        context.save();
+        context.translate(10, 200);
+        context.scale(1, -1);
+        //x axis
+        context.beginPath();
+        context.strokeStyle = "black";
+        context.lineWidth = 3;
+        context.moveTo(0, 0);
+        context.lineTo(360, 0);
+        context.stroke();
+
+        //y axis
+        context.beginPath();
+        context.strokeStyle = "black";
+        context.lineWidth = 3;
+        context.moveTo(0, -1);
+        context.lineTo(0, 150);
+        context.stroke();
+
+        //curve
+
+        context.beginPath();
+        context.strokeStyle = "blue";
+        context.lineWidth = 1;
+        context.moveTo(0, 0);
+        for (i = 1; i <= 360; i++)
+        {
+            context.lineTo(i, 100 * Math.sin(i * Math.PI / 180));
+        }
+        context.stroke();
+        context.restore();
+    </script>
+</body>
+</html>

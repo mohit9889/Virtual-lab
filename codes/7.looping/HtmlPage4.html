@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    Enter x &nbsp;<input type="text" style="width:50px" id="t1" /><br />
+    Enter y &nbsp;<input type="text" style="width:50px" id="t2" /><br />
+    <input type="button" value="Power" onclick="power();" />
+    <p id="p1"></p>
+
+    <script>
+        function power()
+        {
+            var sum = 1;
+            var i = 1;
+            var x = parseFloat(document.getElementById("t1").value);
+            var y = parseInt(document.getElementById("t2").value);
+            for (i = 1; i <= y; i++)
+            {
+                sum = sum * x;
+            }
+
+            document.getElementById("p1").innerHTML = "x^y is " + sum;
+        }
+        //do with while loop
+        //fin odd and even
+    </script>
+</body>
+</html>

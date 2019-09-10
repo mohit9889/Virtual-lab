@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    Enter Principal<input type="text" id="t1" style="width:50px" />&nbsp;&nbsp;&nbsp;
+    Enter Year<input type="text" id="t2" style="width:50px" />
+    <input type="button" value="find SI" onclick="si();" />
+    <script>
+        function si()
+        {
+            var p = parseFloat(document.getElementById("t1").value);
+            var n = parseFloat(document.getElementById("t2").value);
+            var r;
+            if (p <= 1000 && n <= 5)
+            {
+                r = 5;
+            }
+            else if (p > 1000 && p <= 10000 && n <= 5)
+            {
+                r = 7;
+            }
+            else if (p > 1000 && p <= 10000 && n > 5 && n <= 10)
+            {
+                r = 10;
+            }
+            else if (p > 10000 && n > 5)
+            {
+                r = 15;
+            }
+            else {
+                alert("Condition not found");
+                return;
+            }
+            var i = p * n * r / 100;
+            alert(i);
+        }
+    </script>
+</body>
+</html>

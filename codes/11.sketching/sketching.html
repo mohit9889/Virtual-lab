@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <canvas id="mycanvas" width="600" height="500"></canvas>
+
+    <script>
+        var canvas = document.getElementById("mycanvas");
+        var context = canvas.getContext("2d");
+
+        context.font = '12pt Calibri';
+        context.fillStyle = 'blue';
+        context.fillText('Ignition ON', 50, 60);
+        context.fillText('Wiper ON', 50, 135);
+
+
+        context.beginPath();
+        context.moveTo(100, 100);
+        context.lineTo(200, 300);
+        context.strokeStyle = "black"
+        context.lineWidth = 3;
+        context.stroke();
+
+        context.beginPath();
+        context.rect(400, 85, 100, 100);
+        context.fillStyle = "blue";
+        context.fill();
+        context.lineWidth = 3;
+        context.stroke();
+
+        context.beginPath();
+        context.arc(400, 400, 50, 0, 2 * Math.PI, false);
+        context.lineWidth = 2;
+        context.strokeStyle = "black";
+        context.fillStyle = "#888";
+        context.fill();
+        context.stroke();
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <canvas id="mycanvas" width="600" height="500" style="border:solid;border-color:black"></canvas><br />
+    <input type="button" value="Draw Cat" onclick="cat1();" />
+    <input type="button" value="Draw Duck" onclick="duck1();" />
+    <img src="a.jpg" style="display:none" id="cat" />
+    <img src="b.jpg" style="display:none" id="duck" />
+    <script>
+        var canvas = document.getElementById("mycanvas");
+        var context = canvas.getContext("2d");
+        var i;
+        function mouseevt(x, y)
+        {
+            var image;
+            if (i == 1)
+            {
+                image = document.getElementById("cat");
+                context.drawImage(image, x, y);
+            }
+            else if (i == 2)
+            {
+                image = document.getElementById("duck");
+                context.drawImage(image, x, y);
+            }
+                
+
+            
+        }
+        function cat1()
+        {
+            i = 1;
+        }
+        function duck1()
+        {
+            i = 2;
+        }
+    </script>
+    
+    <script src="mouseevent.ob.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <input id="t1" type="text" />
+    <input type="button" value="check_data_type" onclick="check();" />
+    <script>
+        function check()
+        {
+            var a = parseFloat(document.getElementById("t1").value);
+            if (!isNaN(a)) {
+                alert("it is a number");
+            }
+            else {
+                alert("it is string");
+            }
+        }
+       
+    </script>
+</body>
+</html>

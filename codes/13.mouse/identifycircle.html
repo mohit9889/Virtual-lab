@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+   
+</head>
+<body>
+<canvas id="mycanvas" width="600" height="500" style="border:solid;border-color:black"></canvas><br />
+    <input type="button" value="Change Color" onclick="changecolor();" />
+    
+
+    <script src="circlewithevent1.js"></script>
+    <script>
+        var canvas = document.getElementById("mycanvas");
+        var context = canvas.getContext("2d");
+        var circlecontainer = [];
+        var find1 = 0;
+        var start1=0;
+        var storei=-1;
+        var j=1;
+        function mouseevt(x,y)
+        {
+            if (find1 == 0)
+            {
+                var a = new mycircle(canvas, x, y,j);
+                a.draw();
+                circlecontainer.push({ circle: a, x: x, y: y });
+                j++;
+            }
+            else if(find1==1)
+            {
+                for (i = 0; i < circlecontainer.length; i++)
+                {
+                    r = Math.pow(circlecontainer[i].x - x, 2) + Math.pow(circlecontainer[i].circle.y - y, 2);
+                    r = Math.sqrt(r);
+                    if (r < 25)
+                    {
+                        circlecontainer[i].circle.mycolor = "blue";
+                        alert(circlecontainer[i].circle.i);
+                        break;
+                    }
+                }
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                for (i = 0; i < circlecontainer.length; i++)
+                {
+                    circlecontainer[i].circle.draw();
+                }
+
+            }
+            
+
+
+        }
+        function changecolor()
+        {
+            find1 = 1;
+        }
+        function connectr()
+        {
+            find1 = 2;
+        }
+
+    </script>
+    <script src="mouseevent.ob.js"></script>
+</body>
+</html>

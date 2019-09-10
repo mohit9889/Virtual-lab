@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        td,th{
+            border:solid;
+            width:50px;
+        }
+    </style>
+</head>
+<body style="font-size:26px">
+    Run time table access to generate x<sup style="font-size:18px">2</sup><br />
+    Enter the number of terms&nbsp;<input type="text" style="width:50px" id="t1"/>
+    <input type="button" value="Generate Data" onclick="cal();" />
+    <table id="tb1" style="font-size:26px">
+        <tr>
+            <th>x</th>
+            <th>x<sup style="font-size:18px">2</sup> </th>
+        </tr>
+    </table>
+    <script>
+        function cal()
+        {
+            //cleartable
+            var tb1 = document.getElementById("tb1");
+            while (tb1.rows.length > 1) {
+                tb1.deleteRow(1);
+            }
+
+            //adding data
+            var n = parseInt(document.getElementById("t1").value);
+            for (i = 1; i <= n; i++)
+            {
+                var row = tb1.insertRow();
+                var cell = row.insertCell();
+                cell.innerHTML = i;
+                var cell = row.insertCell();
+                cell.innerHTML = i*i;
+            }
+
+            
+        }
+        
+    </script>
+</body>
+</html>

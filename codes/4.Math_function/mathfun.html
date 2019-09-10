@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>
+                <input type="text" style="width:50px" id="t11"/>
+            </td>
+            <td>
+                <input type="text" style="width:50px" id="t12"/>
+            </td>
+            <td>
+                <input type="button" onclick="sin1();" value="Sin" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" style="width:50px" id="t21" />
+            </td>
+            <td>
+                <input type="text" style="width:50px" id="t22" />
+            </td>
+            <td>
+                <input type="button" onclick="cos1();" value="Cos" />
+            </td>
+        </tr>
+    </table>
+    <script>
+        function sin1()
+        {
+            var a = Math.PI / 180 * parseFloat(document.getElementById("t11").value);
+            var b = Math.sin(a);
+            document.getElementById("t12").value = b;
+        }
+        function cos1() {
+            var a = Math.PI / 180 * parseFloat(document.getElementById("t21").value);
+            var b = Math.cos(a);
+            document.getElementById("t22").value = b;
+        }
+    </script>
+</body>
+</html>

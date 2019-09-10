@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    Select item &nbsp;<select id="fruitlist"></select><br />
+    Quantity&nbsp;<input type="text" style="width:100px" id="qty"/>
+    <input type="button" value="ADD" onclick="add();" />
+    <p id="cart"></p>
+    
+    <script>
+        var list = document.getElementById("fruitlist");
+        
+        var fruit = [];
+        
+        fruit.push({ value: 0, name: "Mango", type: "regular", Price: 500 });
+        fruit.push({ value: 1, name: "Banana", type: "regular", Price: 100 });
+        fruit.push({ value: 2, name: "Mango", type: "high", Price: 100 });
+        fruit.push({ value: 3, name: "Banana", type: "regular", Price: 200 });
+        fruit.push({ value: 4, name: "Apple", type: "regular", Price: 200 });
+        fruit.push({ value: 5, name: "Apple", type: "high", Price: 400 });
+        fruit.push({ value: 6, name: "Orange", type: "regular", Price: 300 });
+        fruit.push({ value: 7, name: "Orange", type: "high", Price: 600 });
+        fruit.push({ value: 8, name: "Grape", type: "regular", Price: 60 });
+        fruit.push({ value: 9, name: "Grape", type: "high", Price: 120 });
+        fruit.push({ value: 10, name: "cherry", type: "regular", Price: 260 });
+        for(i=0;i<=10;i++)
+        {
+            var option = document.createElement("option");
+            option.text = fruit[i].name + "--" + fruit[i].type;
+            option.value = fruit[i].value;
+            list.add(option);
+        }
+        function add()
+        {
+            var qty1 = parseInt(document.getElementById("qty").value);
+            var selectedoption = document.getElementById("fruitlist").value;
+            var price;
+            var name;
+            for(i=0;i<=10;i++)
+            {
+                if(fruit[i].value==selectedoption)
+                {
+                    price = fruit[i].Price;
+                    name = fruit[i].name + "--" + fruit[i].type;
+                    break;
+                }
+            }
+            var P = document.getElementById("cart");
+            P.innerHTML=P.innerHTML+name+"="+price*qty1+"<br/>"
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <script src="animation.ob.js"></script>
+</head>
+<body>
+<canvas id="mycanvas" width="600" height="500" style="border:solid;border-color:black"></canvas><br />
+    <input type="button" value="Change Color" onclick="changecolor();" />
+    <input type="button" value="Blink" onclick="blink();" />
+    <input type="button" value="Stop" onclick="stopanim();" />
+    <script src="circlewithevent.js"></script>
+    <script>
+
+        var canvas = document.getElementById("mycanvas");
+        var context = canvas.getContext("2d");
+        var circlecontainer = [];
+        var find1 = 0;
+        //added content
+        var anim = new Animation("mycanvas");
+        var animcanvas = anim.getCanvas();
+        var animcontext = anim.getContext();
+        anim.setStage(stage);
+        var test=1;
+
+        //
+        function mouseevt(x,y)
+        {
+            if (find1 == 0)
+            {
+                var a = new mycircle(canvas, x, y);
+                a.draw();
+                circlecontainer.push({ circle: a, x: x, y: y });
+            }
+            else if(find1==1)
+            {
+                for (i = 0; i < circlecontainer.length; i++)
+                {
+                    r = Math.pow(circlecontainer[i].x - x, 2) + Math.pow(circlecontainer[i].circle.y - y, 2);
+                    r = Math.sqrt(r);
+                    if (r < 25)
+                    {
+                        circlecontainer[i].circle.mycolor = "blue";
+                        break;
+                    }
+                }
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                for (i = 0; i < circlecontainer.length; i++)
+                {
+                    circlecontainer[i].circle.draw();
+                }
+
+            }
+            else if (find1 == 2)
+            {
+                //anim.stop();
+                for (i = 0; i < circlecontainer.length; i++) {
+                    r = Math.pow(circlecontainer[i].x - x, 2) + Math.pow(circlecontainer[i].circle.y - y, 2);
+                    r = Math.sqrt(r);
+                    if (r < 25) {
+                        circlecontainer[i].circle.setcolor("green");
+                        
+                            
+                        
+                        
+                        anim.start();
+                        //alert(anim.animating);
+                        //test++;
+                        break;
+                    }
+                }
+            }
+            
+
+
+        }
+        function changecolor()
+        {
+            find1 = 1;
+        }
+        function blink()
+        {
+            find1 = 2;
+        }
+        function stage()
+        {
+            context.clearRect(0, 0, animcanvas.width, animcanvas.height);
+            for (i = 0; i < circlecontainer.length; i++)
+            {
+                
+                
+                circlecontainer[i].circle.draw();
+                if (circlecontainer[i].circle.mycolor == "green")
+                {
+                    circlecontainer[i].circle.setcolor("yellow");
+                    if (circlecontainer[i].circle.flag == 1) {
+                        if (circlecontainer[i].circle.x > 500) {
+                            circlecontainer[i].circle.flag = 2
+                        }
+                        if (i % 2 == 0)
+                        {
+                            circlecontainer[i].circle.x = circlecontainer[i].circle.x + 1;
+                        }
+                        else {
+                            circlecontainer[i].circle.x = circlecontainer[i].circle.x + 2;
+                        }
+                    }
+                    else if (circlecontainer[i].circle.flag == 2) {
+                        if (circlecontainer[i].circle.x < 100) {
+                            circlecontainer[i].circle.flag = 1
+                        }
+                        if (i % 2 == 0) {
+                            circlecontainer[i].circle.x = circlecontainer[i].circle.x - 3;
+                        }
+                        else {
+                            circlecontainer[i].circle.x = circlecontainer[i].circle.x - 1 ;
+                        }
+                    }
+                    
+                }
+                else if (circlecontainer[i].circle.mycolor == "yellow") {
+                    circlecontainer[i].circle.setcolor("green");
+                    
+                }
+            }
+        }
+
+        function stopanim()
+        {
+            anim.stop();
+        }
+    </script>
+    <script src="mouseevent.ob.js"></script>
+</body>
+</html>

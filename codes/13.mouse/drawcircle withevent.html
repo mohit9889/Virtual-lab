@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+   
+</head>
+<body>
+<canvas id="mycanvas" width="600" height="500" style="border:solid;border-color:black"></canvas><br />
+    <input type="button" value="Change Color" onclick="changecolor();" />
+    <input type="button" value="Connect" onclick="connectr();" />
+
+    <script src="circlewithevent.js"></script>
+    <script>
+        var canvas = document.getElementById("mycanvas");
+        var context = canvas.getContext("2d");
+        var circlecontainer = [];
+        var find1 = 0;
+        var start1=0;
+        var storei=-1;
+        function mouseevt(x,y)
+        {
+            if (find1 == 0)
+            {
+                var a = new mycircle(canvas, x, y);
+                a.draw();
+                circlecontainer.push({ circle: a, x: x, y: y });
+            }
+            else if(find1==1)
+            {
+                for (i = 0; i < circlecontainer.length; i++)
+                {
+                    r = Math.pow(circlecontainer[i].x - x, 2) + Math.pow(circlecontainer[i].circle.y - y, 2);
+                    r = Math.sqrt(r);
+                    if (r < 25)
+                    {
+                        circlecontainer[i].circle.mycolor = "blue";
+                        break;
+                    }
+                }
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                for (i = 0; i < circlecontainer.length; i++)
+                {
+                    circlecontainer[i].circle.draw();
+                }
+
+            }
+            else
+            {
+            	for (i = 0; i < circlecontainer.length; i++)
+                {
+                    r = Math.pow(circlecontainer[i].x - x, 2) + Math.pow(circlecontainer[i].circle.y - y, 2);
+                    r = Math.sqrt(r);
+                    if (r < 25 && start1==0)
+                    {
+                        storei=i;
+                        start1=1;
+                        break;
+                    }
+                    else if (r < 25 && start1==1)
+                    {
+                    	circlecontainer[storei].circle.setconnection(circlecontainer[i].circle.x,circlecontainer[i].circle.y);
+                        storei=-1;
+                        start1=0;
+                        break;
+                    }
+
+                }
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                for (i = 0; i < circlecontainer.length; i++)
+                {
+                    circlecontainer[i].circle.draw();
+                    if(circlecontainer[i].circle.connect==1)
+                    {
+                    	circlecontainer[i].circle.drawline();
+                    }
+                    
+                }
+
+            }
+
+
+        }
+        function changecolor()
+        {
+            find1 = 1;
+        }
+        function connectr()
+        {
+            find1 = 2;
+        }
+
+    </script>
+    <script src="mouseevent.ob.js"></script>
+</body>
+</html>

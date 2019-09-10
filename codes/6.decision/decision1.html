@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <input type="text" id="t1" style="width:50px" />
+    <input type="text" id="t2" style="width:50px" />
+    <input type="button" value="find greatest" onclick="greatest();" />
+    <script>
+        function greatest()
+        {
+            var a = parseInt(document.getElementById("t1").value);
+            var b = parseInt(document.getElementById("t2").value);
+            if (a > b) {
+                alert("a is greatest:" + a);
+            }
+            else {
+                alert("b is greatest:" + b);
+            }
+        }
+        //find greatest of three
+    </script>
+</body>
+</html>

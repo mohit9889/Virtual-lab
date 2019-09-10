@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+<textarea rows="5" cols="60" id="ti"></textarea>
+<textarea rows="5" cols="60" id="to"></textarea>
+<input type="button" value="find_value" onclick="find1();">
+
+    <script>
+        var a = ["id","carname","power","model"];
+        var matchfield;
+        function find1()
+        {
+            var b = document.getElementById("ti").value;
+            var tempb = b;
+        	var j=0;
+        	var z=0;
+        	var match1=[];
+        	for(j=0;j<tempb.length;j++)
+        	{
+        		var index1=b.indexOf(",");
+        		var b1=b.substring(0,index1);
+        		//alert(b1);
+        		var findfield=searchfield(b1);
+        		if( findfield==1)
+        		{
+        		    match1[z] = matchfield;
+        		    //alert(match1[z]);
+        		    //alert(index1 + 1);
+        		    //alert(b.length);
+        			z++;
+        		}
+        		
+        		if(index1+1==b.length)
+        		{
+        			break;
+        		}
+        		b=b.substring(index1+1,b.length);
+        		//alert(b);
+        	} 
+        	for(i=0;i<z;i++)
+        	{
+        		document.getElementById("to").value=document.getElementById("to").value+"  " + match1[i]; 
+        	}
+        	
+        }
+        function searchfield(b1)
+        {
+            //alert(b1);
+        	for(i=0;i<=3;i++)
+        	{
+        		if(a[i]==b1)
+        		{
+        			matchfield=a[i];
+        			return(1);
+        		}
+        	}
+        	return(0);
+        }
+    </script>
+</body>
+</html>

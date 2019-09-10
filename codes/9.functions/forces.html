@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        td, th {
+            border: solid;
+        }
+    </style>
+</head>
+<body>
+    Select number of forces&nbsp;
+    <select name="list1" id="list1" onchange="generate();">
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+        <option value="4">Four</option>
+        <option value="5">Five</option>
+        <option value="6">Six</option>
+        <option value="7">Seven</option>
+    </select>
+    <table id="tb1">
+        <tr>
+            <th>Magnitude</th>
+            <th>Angle</th>
+        </tr>
+        
+    </table>
+    <input type="button" value="Find Resutant" onclick="solve();" />
+    <p id="results" style="font-size:26px"></p>
+    <script>
+        function generate() {
+            cleartable("tb1");
+            inserttable("tb1");
+
+        }
+        function cleartable() {
+            var tb1 = document.getElementById("tb1");
+            while (tb1.rows.length > 1) {
+                tb1.deleteRow(1);
+            }
+        }
+        function inserttable(tb1) {
+            var tb1 = document.getElementById("tb1");
+            var n = parseInt(document.getElementById("list1").value);
+            for (i = 1; i <= n; i++) {
+                var row = tb1.insertRow();
+                var cell = row.insertCell();
+                var t1 = document.createElement("input");
+                t1.type = "text";
+                t1.id = "t" + i;
+                cell.appendChild(t1);
+                var cell = row.insertCell();
+                var t1 = document.createElement("input");
+                t1.type = "text";
+                t1.id = "t" + i + i;
+                cell.appendChild(t1);
+
+            }
+        }
+        function solve()
+        {
+            var force = [];
+            var result = [];
+            store(force);
+            result = cal(force);
+            display(result);
+        }
+        function store(force)
+        {
+            var n = parseInt(document.getElementById("list1").value);
+            for (i = 1; i <= n; i++)
+            {
+                var mag1 = parseFloat(document.getElementById("t" + i).value);
+                var ang1 = parseFloat(document.getElementById("t" + i+i).value);
+                force.push({ mag: mag1, ang: ang1 });
+
+            }
+        }
+        function cal(force)
+        {
+            var sx=calx(force);
+            var sy = caly(force);
+            var mag = Math.pow(sx * sx + sy * sy,0.5);
+            var ang = 180 / Math.PI * Math.atan2(sy, sx);
+            var result = [];
+            result.push({ mag: mag, ang: ang });
+            return (result);
+        }
+        function calx(force)
+        {
+            var sx = 0;
+            for (i = 0; i < force.length; i++)
+            {
+                sx = sx + force[i].mag * Math.cos(force[i].ang * Math.PI/180);
+            }
+            return (sx);
+        }
+        function caly(force) {
+            var sy = 0;
+            for (i = 0; i < force.length; i++) {
+                sy = sy + force[i].mag * Math.sin(force[i].ang * Math.PI / 180);
+            }
+            return (sy);
+        }
+
+        function display(result)
+        {
+            document.getElementById("results").innerHTML = "Magnitude of force=" + result[0].mag + "  Angle=" + result[0].ang;
+        }
+    </script>
+</body>
+</html>

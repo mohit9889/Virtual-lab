@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <canvas id="myCanvas" width="800" height="500"></canvas>
+    <script>
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+      var rectWidth = 150;
+        var rectHeight = 75;
+
+        context.beginPath();
+        context.rect(10, 10, 100, 100);
+        context.fillStyle = "blue";
+        context.fill();
+        context.lineWidth = 3;
+        context.stroke();
+        context.save();
+      // translate context to center of canvas
+      context.translate(200, 200);
+
+      // scale y component
+        context.scale(1, 0.5);
+
+        context.beginPath();
+        context.rect(10, 10, 100, 100);
+        context.fillStyle = "blue";
+        context.fill();
+        context.lineWidth = 3;
+        context.stroke();
+        context.restore();
+
+        //rotation
+        context.save();
+        context.translate(300, 10);
+        context.rotate(45);
+
+        context.beginPath();
+        context.rect(10, 10, 100, 100);
+        context.fillStyle = "blue";
+        context.fill();
+        context.lineWidth = 3;
+        context.stroke();
+        context.restore();
+
+        //shear
+        context.save();
+        context.translate(400, 10);
+        var sx = 1.5;
+        var sy = 1.5;
+        context.transform(1, sy, sx, 1, 0, 0);
+
+        context.beginPath();
+        context.rect(10, 10, 100, 100);
+        context.fillStyle = "blue";
+        context.fill();
+        context.lineWidth = 3;
+        context.stroke();
+        context.restore();
+
+
+        //mirror
+        context.beginPath();
+        context.moveTo(40, 400);
+        context.lineTo(140, 400);
+        context.lineTo(100, 300);
+        context.lineTo(40, 400);
+        context.fillStyle = "blue";
+        context.fill();
+        context.lineWidth = 1;
+        context.stroke();
+
+        context.translate(100, 300);
+        context.scale(1, -1);
+        context.translate(-100, -300);
+        
+        context.beginPath();
+        context.moveTo(40, 400);
+        context.lineTo(140, 400);
+        context.lineTo(100, 300);
+        context.lineTo(40, 400);
+        context.fillStyle = "blue";
+        context.fill();
+        context.lineWidth = 1;
+        context.stroke();
+    </script>
+</body>
+</html>

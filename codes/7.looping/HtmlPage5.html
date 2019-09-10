@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="mathstyle.css" rel="stylesheet" />
+    
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+</head>
+<body>
+    <p style="font-size:26px">sum= <span class="frac"><sup>x</sup><span>&frasl;</span><sub>1!</sub></span> + 
+    <span class="frac"><sup>x<sup>2</sup></sup><span>&frasl;</span><sub>2!</sub>  </span>+ 
+    <span class="frac"><sup>x<sup>3</sup></sup><span>&frasl;</span><sub>3!</sub></span>   </p>
+
+    <p style="font-size:26px"><span style="display:inline-block">$$sum=\frac{x}{1!}+\frac{x^2}{2!}+\frac{x^3}{3!}$$ </span> </p>
+    Enter x&nbsp; <input type="text" style="width:50px" id="t1" />
+    Enter no of terms&nbsp;<input type="text" style="width:50px" id="t2" />
+    <input type="button" value="Calculate" onclick="cal();" />
+    <input type="text" style="width:50px" id="t3" />
+    <script>
+        function cal()
+        {
+            var x = parseFloat(document.getElementById("t1").value);
+            var n = parseInt(document.getElementById("t2").value);
+            var sum = 0;
+            for (i = 1; i <= n; i++)
+            {
+                var pow = 1;
+                for (j = 1; j <= i; j++)
+                {
+                    pow = pow * x;
+                }
+                var fact = 1;
+                for (j = 1; j <= i; j++)
+                {
+                    fact = fact * j;
+                }
+                sum = sum + pow / fact;
+            }
+            document.getElementById("t3").value = sum;
+        }
+        //find prime numbers between 2 and 100
+    </script>
+
+</body>
+</html>
